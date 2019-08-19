@@ -1,0 +1,1317 @@
+c#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+                    PENGENALAN
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+The OECD Programme for International Student Assessment (PISA), created in 1997, represents a commitment by the governments of OECD countries to monitor the outcomes of education systems, in terms of student achievement, within a common, internationally agreed framework
+
+PISA = Programme for International Student Assessment
+OECD = Organisation for Economic Co-operation and Development 
+
+PISA Database
+The PISA database contains the full set of responses from individual students, school principals and parents. 
+These files will be of use to statisticians and professional researchers who would like to undertake their own analysis of the PISA data. 
+The files available on this page include background questionnaires, data files in ASCII format (from 2000 to 2012), codebooks, compendia and SAS™ and SPSS™ data files in order to process the data.
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+                      SOURCE: 
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+http://www.oecd.org/pisa/data/2015database/
+SPSS (TM) Data Files (compressed)
+Additional data files for Albania, Argentina, Kazakhstan and Malaysia* (21MB)
+- Student Data
+- Teacher Data
+
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+                      METADATA:
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+
+CNTSCHID	CNTSTUID	
+
+STRATUM	
+MYS - stratum 01: MOE National Secondary School\Other States
+MYS - stratum 02: MOE Religious School\Other States
+MYS - stratum 03: MOE Technical School\Other States
+MYS - stratum 04: MOE Fully Residential School (SBP)
+MYS - stratum 05: non-MOE MARA Junior Science College\Other States (MRSM)
+MYS - stratum 06: non-MOE Other Schools\Other States
+MYS - stratum 07: Perlis non-“MOE Fully Residential Schools”
+MYS - stratum 08: Wilayah Persekutuan Putrajaya non-“MOE Fully Residential Schools”
+MYS - stratum 09: Wilayah Persekutuan Labuan non-“MOE Fully Residential Schools”
+
+MYS0101 MYS0202 MYS0203 MYS0204 MYS0205 MYS0206 MYS0207 MYS0208 MYS0209 
+   4929     273     281    2661     122     385      78      78      54 
+   
+MYS0101 MYS0202 MYS0203 MYS0204 MYS0205 MYS0206 MYS0207 MYS0208 MYS0209 
+  4929     273     281    2661     122     385      78      78      54 
+
+
+
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#- 
+-+-+-+-+-+-+-+-+-+-+-+-+-+
+student level variables: Students complete the student questionnaire after the literacy assessment.
+The questionnaire takes about 35 minutes to complete.
+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#- 
+
+
+LANGN         'Language at home (3-digit code)'
+154 (Tamil)  204(Malay)  313(English)  316(Chinese)  872(Other Lang in Malaysia) 
+ 265          6734          390           965                 428 
+
+$Student
+
+ CNTRYID       'Country Identifier'                                                                                                     
+ CNT           'Country code 3-character'                                                                                               
+ CNTSCHID      'Intl. School ID'                                                                                                        
+ CNTSTUID      'Intl. Student ID'                                                                                                       
+ CYC           'PISA Assessment Cycle (2 digits + 2 character Assessment type - MS\FT)'                                                
+ NatCen        'National Centre 6-digit Code'                                                                                           
+ Region        'Region'                                                                                                                 
+ STRATUM       'Stratum ID 7-character (cnt + region ID + original stratum ID)'                                                         
+ SUBNATIO      'Adjudicated sub-region code 7-digit code (3-digit country code + region ID + stratum ID)'                               
+ OECD          'OECD country'                                                                                                           
+ ADMINMODE     'Mode of Respondent'                                                                                                     
+ Option_CPS    'Collaborative Problem Solving Option'                                                                                   
+ Option_FL     'Financial Literacy Option'                                                                                              
+ Option_ICTQ   'ICT Literacy Questionnaire Option'                                                                                      
+ Option_ECQ    'Educational Career Questionnaire Option'                                                                                
+ Option_PQ     'Parent Questionnaire Option'                                                                                            
+ Option_TQ     'Teacher Questionnaire Option'                                                                                           
+ Option_UH     'Une Heure Option'                                                                                                       
+ Option_Read   'Reading Option'                                                                                                         
+ Option_Math   'Math Option'                                                                                                            
+ LANGTEST_QQQ  'Language of Questionnaire'                                                                                              
+ LANGTEST_COG  'Language of Assessment'                                                                                                 
+ LANGTEST_PAQ  'Language of Questionnaire\Assessment (PAQ)'                                                                            
+ CBASCI        'Science Cluster Combination Random Number (S)'                                                                          
+ BOOKID        'Form Identifier'      
+ 
+ # student, student’s family and student’s home
+ ST001D01T     'Student International Grade (Derived)'                                                                                  
+ ST003D02T     'Student (Standardized) Birth - Month'                                                                                   
+ ST003D03T     'Student (Standardized) Birth -Year'                                                                                     
+ ST004D01T     'Student (Standardized) Gender'  1: Female 2: Male                                                                                        
+ ST005Q01TA    'What is the <highest level of schooling> completed by your mother?'                                                     
+ ST006Q01TA    'Does your mother have this qualification? <ISCED level 6>'                                                              
+ ST006Q02TA    'Does your mother have this qualification? <ISCED level 5A>'                                                             
+ ST006Q03TA    'Does your mother have this qualification? <ISCED level 5B>'                                                             
+ ST006Q04TA    'Does your mother have this qualification? <ISCED level 4>'                                                              
+ ST007Q01TA    'What is the <highest level of schooling> completed by your father?'                                                     
+ ST008Q01TA    'Does your father have this qualification? <ISCED level 6>'                                                              
+ ST008Q02TA    'Does your father have this qualification? <ISCED level 5A>'                                                             
+ ST008Q03TA    'Does your father have this qualification? <ISCED level 5B>'                                                             
+ ST008Q04TA    'Does your father have this qualification? <ISCED level 4>'                                                              
+ ST011Q01TA    'In your home: A desk to study at'                                                                                       
+ ST011Q02TA    'In your home: A room of your own'                                                                                       
+ ST011Q03TA    'In your home: A quiet place to study'                                                                                   
+ ST011Q04TA    'In your home: A computer you can use for school work'                                                                   
+ ST011Q05TA    'In your home: Educational software'                                                                                     
+ ST011Q06TA    'In your home: A link to the Internet'                                                                                   
+ ST011Q07TA    'In your home: Classic literature (e.g. <Shakespeare>)'                                                                  
+ ST011Q08TA    'In your home: Books of poetry'                                                                                          
+ ST011Q09TA    'In your home: Works of art (e.g. paintings)'                                                                            
+ ST011Q10TA    'In your home: Books to help with your school work'                                                                      
+ ST011Q11TA    'In your home: <Technical reference books>'                                                                              
+ ST011Q12TA    'In your home: A dictionary'                                                                                             
+ ST011Q16NA    'In your home: Books on art, music, or design'                                                                           
+ ST011D17TA    'In your home: <Country-specific wealth item 1>'                                                                         
+ ST011D18TA    'In your home: <Country-specific wealth item 2>'                                                                         
+ ST011D19TA    'In your home: <Country-specific wealth item 3>'                                                                         
+ ST012Q01TA    'How many in your home: Televisions'                                                                                     
+ ST012Q02TA    'How many in your home: Cars'                                                                                            
+ ST012Q03TA    'How many in your home: Rooms with a bath or shower'                                                                     
+ ST012Q05NA    'How many in your home: <Cell phones> with Internet access (e.g. smartphones)'                                           
+ ST012Q06NA    'How many in your home: Computers (desktop computer, portable laptop, or notebook)'                                      
+ ST012Q07NA    'How many in your home: <Tablet computers> (e.g. <iPadÆ>, <BlackBerryÆ PlayBookTM>)'                               
+ ST012Q08NA    'How many in your home: E-book readers (e.g. <KindleTM>, <Kobo>, <Bookeen>)'                                             
+ ST012Q09NA    'How many in your home: Musical instruments (e.g. guitar, piano)'                                                        
+ ST013Q01TA    'How many books are there in your home?'                                                                                 
+
+Parents emotional support (EMOSUPS) 
+ ST123Q01NA    '<this academic year>: My parents are interested in my school activities.'                                               
+ ST123Q02NA    '<this academic year>: My parents support my educational efforts and achievements.'                                      
+ ST123Q03NA    '<this academic year>: My parents support me when I am facing difficulties at school.'                                   
+ ST123Q04NA    '<this academic year>: My parents encourage me to be confident.'                                                         
+ 
+ ST019AQ01T    'Country of Birth International - Self'                                                                                  
+ ST019BQ01T    'Country of Birth International - Mother'                                                                                
+ ST019CQ01T    'Country of Birth International - Father'                                                                                
+ ST021Q01TA    'How old were you when you arrived in <country of test>?'                                                                
+ ST022Q01TA    'International Language at Home'                                                                                         
+ ST124Q01TA    'Did you attend <ISCED 0>?'                                                                                              
+ ST125Q01NA    'How old were you when you started <ISCED 0>? Years'                                                                     
+ ST126Q01TA    'How old were you when you started <ISCED 1>? Years'                                                                     
+ ST127Q01TA    'Have you ever repeated a <grade>? At <ISCED 1>'                                                                         
+ ST127Q02TA    'Have you ever repeated a <grade>? At <ISCED 2>'                                                                         
+ ST127Q03TA    'Have you ever repeated a <grade>? At <ISCED 3>'                                                                         
+ ST111Q01TA    'Which of the following do you expect to complete?' 
+ 
+
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#- 
+ student's view about his/her life
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ 
+Test Anxiety (ANXTEST)
+ ST118Q01NA    'To what extent do you disagree or agree about yourself? I often worry that it will be difficult for me taking a test.'  
+ ST118Q02NA    'To what extent do you disagree or agree about yourself? I worry that I will get poor <grades> at school.'               
+ ST118Q03NA    'To what extent do you disagree or agree about yourself? Even if I am well-prepared for a test I feel very anxious.'     
+ ST118Q04NA    'I get very tense when I study for a test.'                                                                              
+ ST118Q05NA    'I get nervous when I don't know how to solve a task at school.'                                                         
+ 
+Achievement motivation (MOTIVAT)
+ ST119Q01NA    'I want top grades in most or all of my courses.'                                                                        
+ ST119Q02NA    'I want to be able to select from among the best opportunities available when I graduate.'                               
+ ST119Q03NA    'I want to be the best, whatever I do.'                                                                                  
+ ST119Q04NA    'I see myself as an ambitious person.'                                                                                   
+ ST119Q05NA    'I want to be one of the best students in my class.'                                                                     
+
+ ST121Q01NA    '<NAME 1> is motivated? Gives up easily when confronted with a problem and is often not prepared'                        
+ ST121Q02NA    '<NAME 2> is motivated? Mostly remains interested in the tasks she starts and sometimes does more than expected'         
+ ST121Q03NA    '<NAME 3> is motivated? Wants to get top grades at school and continues working on tasks until perfect.'                 
+ 
+ 
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ student's school
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+
+Enjoy co-operation (COOPERATE)
+ ST082Q02NA    'To what extent do you disagree or agree about yourself? I am a good listener.'                                          
+ ST082Q03NA    'To what extent do you disagree or agree about yourself? I enjoy seeing my classmates be successful.'                    
+ ST082Q08NA    'To what extent do you disagree or agree about yourself? I take into account what others are interested in.'             
+ ST082Q12NA    'To what extent do you disagree or agree about yourself? I enjoy considering different perspectives.'                    
+
+Value co-operation (CPSVALUE)
+ ST082Q01NA    'To what extent do you disagree or agree about yourself? I prefer working as part of a team to working alone.'           
+ ST082Q09NA    'To what extent do you disagree or agree about yourself? I find that teams make better decisions than individuals.'      
+ ST082Q13NA    'To what extent do you disagree or agree about yourself? I find that teamwork raises my own efficiency.'                 
+ ST082Q14NA    'To what extent do you disagree or agree about yourself? I enjoy cooperating with peers.'                                
+
+Sense of Belonging to School (BELONG)
+ ST034Q01TA    'I feel like an outsider (or left out of things) at school.'                                                             
+ ST034Q02TA    'I make friends easily at school.'                                                                                       
+ ST034Q03TA    'I feel like I belong at school.'                                                                                        
+ ST034Q04TA    'I feel awkward and out of place in my school.'                                                                          
+ ST034Q05TA    'Other students seem to like me.'                                                                                        
+ ST034Q06TA    'I feel lonely at school.'                                                                                               
+ 
+ 
+ ST039Q01NA    'Teachers called on me less often than they called on other students.'                                                   
+ ST039Q02NA    'Teachers graded me harder than they graded other students.'                                                             
+ ST039Q03NA    'Teachers gave me the impression that they think I am less smart than I really am.'                                      
+ ST039Q04NA    'Teachers disciplined me more harshly than other students.'                                                              
+ ST039Q05NA    'Teachers ridiculed me in front of others.'                                                                              
+ ST039Q06NA    'Teachers said something insulting to me in front of others.'                                                            
+
+
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ student’s school schedule and learning time
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+
+ ST059Q01TA    'Number of <class periods> required per week in <test language>'                                                         
+ ST059Q02TA    'Number of <class periods> required per week in mathematics'                                                             
+ ST059Q03TA    'Number of <class periods> required per week in <science>'                                                               
+ ST060Q01NA    'In a normal, full week at school, how many <class periods> are you required to attend in total?'                        
+ ST061Q01NA    'How many minutes, on average, are there in a <class period>?'                                                           
+ ST062Q01TA    'In the last two full weeks of school, how often: I <skipped> a whole school day'                                        
+ ST062Q02TA    'In the last two full weeks of school, how often: I <skipped> some classes'                                              
+ ST062Q03TA    'In the last two full weeks of school, how often: I arrived late for school'                                             
+ ST071Q01NA    'This school year, approximately how many hours per week do you spend learning in addition? <School Science>'            
+ ST071Q02NA    'This school year, approximately how many hours per week do you spend learning in addition? Mathematics'                 
+ ST071Q03NA    'This school year, approximately how many hours per week do you spend learning in addition? <Test language>'             
+ ST071Q04NA    'This school year, approximately how many hours per week do you spend learning in addition? <Foreign language>'          
+ ST071Q05NA    'This school year, approximately how many hours per week do you spend learning in addition? Other'                       
+ ST031Q01NA    'On avg, how many days do you attend physical education classes each week?'                                              
+ ST032Q01NA    'Moderate physical activities for a total of at least 60 minutes per day'                                                
+ ST032Q02NA    'Vigorous physical activities for at least 20 minutes per day that made you sweat and breathe hard'                      
+ 
+ 
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ science learning in school
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ 
+ # Which of the following <school science> courses did you attend this school year or last school year?
+ ST063Q01NA    'Which <school science> course did you attend? Physics: This year'                                                       
+ ST063Q01NB    'Which <school science> course did you attend? Physics: Last year'                                                       
+ ST063Q02NA    'Which <school science> course did you attend? Chemistry: This year'                                                     
+ ST063Q02NB    'Which <school science> course did you attend? Chemistry: Last year'                                                     
+ ST063Q03NA    'Which <school science> course did you attend? Biology: This year'                                                       
+ ST063Q03NB    'Which <school science> course did you attend? Biology: Last year'                                                       
+ ST063Q04NA    'Which <school science> course did you attend? <Earth and space>: This year'                                             
+ ST063Q04NB    'Which <school science> course did you attend? <Earth and space>: Last year'                                             
+ ST063Q05NA    'Which <school science> course did you attend? Applied sciences and technology: This year'                               
+ ST063Q05NB    'Which <school science> course did you attend? Applied sciences and technology: Last year'                               
+ ST063Q06NA    'Which <school science> course did you attend? <General, integrated, or comprehen science> course: This year'            
+ ST063Q06NB    'Which <school science> course did you attend? <General, integrated, or comprehen science> course: Last year'            
+ 
+ # To what extent can you choose the following for your <school science> courses?
+ ST064Q01NA    '<school science> courses? I can choose the <school science> course(s) I study.'                                         
+ ST064Q02NA    '<school science> courses? I can choose the level of difficulty.'                                                        
+ ST064Q03NA    '<school science> courses? I can choose the number of <school science> courses or <class periods>.'                      
+ 
+ Item parameters for Disciplinary climate in science classes (DISCLISCI)
+ # How often do these things happen in your <school science> lessons?
+ ST097Q01TA    'How often does this happen in your <school science> lessons? Students don't listen to what the teacher says.'           
+ ST097Q02TA    'How often does this happen in your <school science> lessons? There is noise and disorder.'                              
+ ST097Q03TA    'How often does this happen in your <school science> lessons? The teacher waits long for students to quiet down.'        
+ ST097Q04TA    'How often does this happen in your <school science> lessons? Students cannot work well.'                                
+ ST097Q05TA    'How often does this happen in your <school science> lessons? Students don't start working for a long time after.'       
+ 
+ Item parameters for Inquiry-based science teaching and learning practices (IBTEACH)
+ # When learning <school science> topics at school, how often do the following activities occur?
+ ST098Q01TA    'When learning <school science>? Students are given opportunities to explain their ideas.'                               
+ ST098Q02TA    'When learning <school science>? Students spend time in the laboratory doing practical experiments.'                     
+ ST098Q03NA    'When learning <school science>? Students are required to argue about science questions.'                                
+ ST098Q05TA    'When learning <school science>? Students are asked to draw conclusions from an experiment they have conducted.'         
+ ST098Q06TA    'When learning <school science>? The teacher explains <school science> idea can be applied'                              
+ ST098Q07TA    'When learning <school science>? Students are allowed to design their own experiments.'                                  
+ ST098Q08NA    'When learning <school science>? There is a class debate about investigations.'                                          
+ ST098Q09TA    'When learning <school science>? The teacher clearly explains relevance †<broad science> concepts to our lives.'      
+ ST098Q10NA    'When learning <school science>? Students are asked to do an investigation to test ideas.'                               
+ 
+ Item parameters for Teacher support in a science classes (TEACHSUP)
+ # How often do these things happen in your <school science> lessons?
+ ST100Q01TA    'How often does this happen in your <school science> lessons? The teacher shows †interest every students learning.'   
+ ST100Q02TA    'How often does this happen in your <school science> lessons? The teacher gives extra help.'                             
+ ST100Q03TA    'How often does this happen in your <school science> lessons? The teacher helps students with their learning.'           
+ ST100Q04TA    'How often does this happen in your <school science>? The teacher continues teaching\students understand.'              
+ ST100Q05TA    'How often does this happen in your <school science>? Teacher gives an opportunity to express opinions.'                 
+ 
+ Item parameters for Teacher-directed science instruction (TDTEACH)
+ # How often do these things happen in your lessons for this <school science> course?
+ ST103Q01NA    'How often does this happen in <school science>? The teacher explains scientific ideas.'                                 
+ ST103Q03NA    'How often does this happen in <school science>? A whole class discussion takes place with the teacher.'                 
+ ST103Q08NA    'How often does this happen in <school science>? The teacher discusses our questions.'                                   
+ ST103Q11NA    'How often does this happen in <school science>? The teacher demonstrates an idea.'                                      
+ 
+Item parameters for Perceived Feedback (PERFEED)
+ # How often do these things happen in your lessons for this <school science> course?
+ ST104Q01NA    'How often does this happen in <school science>? The teacher tells me how I am performing in this course.'               
+ ST104Q02NA    'How often does this happen in <school science>? The teacher gives me feedback on my strengths <school science> subjec'  
+ ST104Q03NA    'How often does this happen in <school science>? The teacher tells me in which areas I can still improve.'               
+ ST104Q04NA    'How often does this happen in <school science>? The teacher tells me how I can improve my performance.'                 
+ ST104Q05NA    'How often does this happen in <school science>? The teacher advises me on how to reach my learning goals.'              
+ 
+Item parameters for Adaption of instruction (ADINST)
+ # How often do these things happen in your lessons for this <school science> course?
+ ST107Q01NA    'How often does this happen in <school science>? The teacher adapts the lesson to my class needs and knowledge.'         
+ ST107Q02NA    'How often does this happen in <school science>? The teacher provides individual help when a student has difficulties'   
+ ST107Q03NA    'How often does this happen in <school science>? The teacher changes the structure of the lesson on a topic'             
+
+Item parameters for Instrumental motivation (INSTSCIE)
+ # How much do you agree with the statements below?
+ ST113Q01TA    'Making an effort in my <school science> subject(s) is worth it because this will help me in the work I want to do lat'  
+ ST113Q02TA    'What I learn in my <school science> subject(s) is important for me because I need this for what I want to do later on'  
+ ST113Q03TA    'Studying my <school science> subject(s) is worthwhile for me because what I learn will improve my career prospects.'    
+ ST113Q04TA    'Many things I learn in my <school science> subject(s) will help me to get a job.'                                       
+  
+
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ student’s view on science
+ #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+ 
+Environmental Awareness (ENVAWARE)
+ # How informed are you about the following environmental issues? 
+ ST092Q01TA    'How informed are you about this environmental issue? The increase of greenhouse gases in the atmosphere'                
+ ST092Q02TA    'How informed are you about this environmental issue? The use of genetically modified organisms (<GMO>)'                 
+ ST092Q04TA    'How informed are you about this environmental issue? Nuclear waste'                                                     
+ ST092Q05TA    'How informed are you about this environmental issue? The consequences of clearing forests\other land use'              
+ ST092Q06NA    'How informed are you about this environmental issue? Air pollution'                                                     
+ ST092Q08NA    'How informed are you about this environmental issue? Extinction of plants and animals'                                  
+ ST092Q09NA    'How informed are you about this environmental issue? Water shortage'                                                    
+ 
+Item parameters for Environmental optimism (ENVOPT)
+ # Do you think problems associated with the environmental issues below will improve or get worse over the next 20 years?
+ ST093Q01TA    'This issue will improve or get worse over next 20 years? Air pollution (student)'                                       
+ ST093Q03TA    'This issue will improve or get worse over next 20 years? Extinction of plants and animals (student)'                    
+ ST093Q04TA    'This issue will improve or get worse over next 20 years? Clearing of forests for other land use (student)'              
+ ST093Q05TA    'This issue will improve or get worse over next 20 years? Water shortages (student)'                                     
+ ST093Q06TA    'This issue will improve or get worse over next 20 years? Nuclear waste (student)'                                       
+ ST093Q07NA    'This issue will improve or get worse over next 20 years? The increase of greenhouse gases in the atmosphere'            
+ ST093Q08NA    'This issue will improve or get worse over next 20 years? The use of genetically modified organisms (<GMO>)'             
+ 
+Enjoyment of science (JOYSCIE)
+ # How much do you disagree or agree with the statements about yourself below?
+ ST094Q01NA    'Disagree or agree with the statements? I have fun when I am learning <broad science>'                                   
+ ST094Q02NA    'Disagree or agree with the statements? I like reading about <broad science> topics.'                                    
+ ST094Q03NA    'Disagree or agree with the statements? I am happy working on <broad science> topics.'                                   
+ ST094Q04NA    'Disagree or agree with the statements? I enjoy acquiring new knowledge in <broad science>.'                             
+ ST094Q05NA    'Disagree or agree with the statements? I am interested in learning about <broad science>.'                              
+ 
+Interest in broad science topics (INTBRSCI)
+ # To what extent are you interested in the following <broad science> topics?
+ ST095Q04NA    'To what extent are you interested in: Biosphere (e.g. ecosystem services, sustainability)'                              
+ ST095Q07NA    'To what extent are you interested in: Motion and forces (e.g. velocity, friction, magnetic and gravi forces)'           
+ ST095Q08NA    'To what extent are you interested in: Energy and its transformation (e.g. conservation, chemical reactions)'            
+ ST095Q13NA    'To what extent are you interested in: <broad science> topics? The Universe and its history'                             
+ ST095Q15NA    'To what extent are you interested in: <broad science> topics? How science can help us prevent disease'                  
+ 
+ Science self-efficacy (SCIEEFF)  
+ # How easy do you think it would be for you to perform the following tasks on your own?
+ ST129Q01TA    'Recognise the science question that underlies a newspaper report on a health issue.'                                    
+ ST129Q02TA    'Explain why earthquakes occur more frequently in some areas than in others.'                                            
+ ST129Q03TA    'Describe the role of antibiotics in the treatment of disease.'                                                          
+ ST129Q04TA    'Identify the science question associated with the disposal of garbage.'                                                 
+ ST129Q05TA    'Predict how changes to an environment will affect the survival of certain species.'                                     
+ ST129Q06TA    'Interpret the scientific information provided on the labelling of food items.'                                          
+ ST129Q07TA    'Discuss how new evidence can lead you to change your understanding about the possibility of life on Mars.'              
+ ST129Q08TA    'Identify the better of two explanations for the formation of acid rain.'                                                
+ 
+ Epistemological beliefs (EPIST)
+ # How much do you disagree or agree with the statements below?
+ ST131Q01NA    'A good way to know if something is true is to do an experiment.'                                                        
+ ST131Q03NA    'How much do you disagree or agree with the statements below? Ideas in <broad science> sometimes change.'                
+ ST131Q04NA    'Good answers are based on evidence from many different experiments.'                                                    
+ ST131Q06NA    'It is good to try experiments more than once to make sure of your findings.'                                            
+ ST131Q08NA    'Sometimes <broad science> scientists change their minds about what is true'                                             
+ ST131Q11NA    'The ideas in <broad science> science books sometimes change.'                                                           
+ 
+ Science activities (SCIEACT)
+ # How often do you do these things?
+ ST146Q01TA    'How often do you do these things? Watch TV programmes about <broad science>'                                            
+ ST146Q02TA    'How often do you do these things? Borrow or buy books on <broad science> topics'                                        
+ ST146Q03TA    'How often do you do these things? Visit web sites about <broad science> topics'                                         
+ ST146Q04TA    'How often do you do these things? Read <broad science> magazines or science articles in newspapers'                     
+ ST146Q05TA    'How often do you do these things? Attend a <science club>'                                                              
+ ST146Q06NA    'How often do you do these things? Simulate natural phenomena in computer programs\virtual labs'                        
+ ST146Q07NA    'How often do you do these things? Simulate technical processes in computer programs\virtual labs'                      
+ ST146Q08NA    'How often do you do these things? Visit web sites of ecology organisations'                                             
+ ST146Q09NA    'How often do you do these things? Follow news via blogs and microblogging'                                              
+
+ # On the most recent day you attended school, did you do any of the following before going to school?
+ ST076Q01NA    'Before going to school did you: Eat breakfast'                                                                          
+ ST076Q02NA    'Before going to school did you: Study for school or homework'                                                           
+ ST076Q03NA    'Before going to school did you: Watch TV\<DVD>\Video'                                                                 
+ ST076Q04NA    'Before going to school did you: Read a book\newspaper\magazine'                                                       
+ ST076Q05NA    'Before going to school did you: Internet\Chat\Social networks (e.g. <Facebook>, <country-specific social network>)'   
+ ST076Q06NA    'Before going to school did you: Play video-games'                                                                       
+ ST076Q07NA    'Before going to school did you: Meet friends or talk to friends on the phone'                                           
+ ST076Q08NA    'Before going to school did you: Talk to your parents'                                                                   
+ ST076Q09NA    'Before going to school did you: Work in the household or take care'                                                     
+ ST076Q10NA    'Before going to school did you: Work for pay'                                                                           
+ ST076Q11NA    'Before going to school did you: Exercise or practice a sport'                                                           
+ 
+ # On the most recent day you attended school, did you do any of the following after leaving school?
+
+ ST078Q01NA    'After leaving school did you: Eat dinner'                                                                               
+ ST078Q02NA    'After leaving school did you: Study\school\hmk'                                                                       
+ ST078Q03NA    'After leaving school did you: Watch TV\<DVD>\Video'                                                                   
+ ST078Q04NA    'After leaving school did you: Read a book\newspaper\magazine'                                                         
+ ST078Q05NA    'After leaving school did you: Internet\Chat\Social net (e.g. <Facebook>)'                                             
+ ST078Q06NA    'After leaving school did you: Play video-games'                                                                         
+ ST078Q07NA    'After leaving school did you: Meet friends or talk to friends on the phone'                                             
+ ST078Q08NA    'After leaving school did you: Talk to your parents'                                                                     
+ ST078Q09NA    'After leaving school did you: Work in the household or take care of other family members'                               
+ ST078Q10NA    'After leaving school did you: Work for pay'                                                                             
+ ST078Q11NA    'After leaving school did you: Exercise or practice a sport'                                                             
+ 
+ ST065Class    'Student coded science class (from ST065Q01NA)'                                                                          
+               
+ AGE           'Age'                                                                                                                    
+ PROGN         'Unique national study programme code'                                                                                   
+ ISCEDL        'ISCED level'                                                                                                            
+ ISCEDD        'ISCED designation'                                                                                                      
+ ISCEDO        'ISCED orientation'                                                                                                      
+ DISCLISCI     'Disciplinary climate in science classes (WLE)'                                                                          
+ TEACHSUP      'Teacher support in a science classes of students choice (WLE)'                                                          
+ IBTEACH       'Inquiry-based science teaching an learning practices (WLE)'                                                             
+ TDTEACH       'Teacher-directed science instruction (WLE)'                                                                             
+ ENVAWARE      'Environmental Awareness (WLE)'                                                                                          
+ ENVOPT        'Environmental optimism (WLE)'                                                                                           
+ JOYSCIE       'Enjoyment of science (WLE)'                                                                                             
+ INTBRSCI      'Interest in broad science topics (WLE)'                                                                                 
+ INSTSCIE      'Instrumental motivation (WLE)'                                                                                          
+ SCIEEFF       'Science self-efficacy (WLE)'                                                                                            
+ EPIST         'Epistemological beliefs (WLE)'                                                                                          
+ SCIEACT       'Index science activities (WLE)'                                                                                         
+ BSMJ          'Studentsí expected occupational status (SEI)'                                                                        
+ GRADE         'Grade compared to modal grade in country'                                                                               
+ IMMIG         'Index Immigration status'                                                                                               
+ MISCED        'Motherís Education (ISCED)'                                                                                          
+ FISCED        'Fatherís Education (ISCED)'                                                                                          
+ HISCED        'Highest Education of parents (ISCED)'                                                                                   
+ HOMESCH       'ICT use outside of school for schoolwork (WLE)'                                                                         
+ ENTUSE        'ICT use outside of school leisure (WLE)'                                                                                
+ BMMJ1         'ISEI of mother'                                                                                                         
+ BFMJ2         'ISEI of father'                                                                                                         
+ hisei         'Index highest parental occupational status'                                                                             
+ REPEAT        'Grade Repetition'                                                                                                       
+ DURECEC       'Duration in early childhood education and care'                                                                         
+ OUTHOURS      'Out-of-School Study Time per week (Sum)'                                                                                
+ MMINS         'Learning time (minutes per week) - <Mathematics>'                                                                       
+ LMINS         'Learning time (minutes per week) - <test language>'                                                                     
+ SMINS         'Learning time (minutes per week) - <science>'                                                                           
+ TMINS         'Learning time (minutes per week) - in total'                                                                            
+ BELONG        'Subjective well-being: Sense of Belonging to School (WLE)'                                                              
+ ANXTEST       'Personality: Test Anxiety (WLE)'                                                                                        
+ MOTIVAT       'Student Atttidudes, Preferences and Self-related beliefs: Achieving motivation (WLE)'                                   
+ COOPERATE     'Collaboration and teamwork dispositions: Enjoy cooperation (WLE)'                                                       
+ CPSVALUE      'Collaboration and teamwork dispositions: Value cooperation (WLE)'                                                       
+ EMOSUPS       'Parents emotional support (WLE)'                                                                                        
+ PERFEED       'Perceived Feedback (WLE)'                                                                                               
+ ADINST        'Adaption of instruction (WLE)'                                                                                          
+ 
+ SCCHANGE-> NA      'Number of school changes'                                                                                               
+ CHANGE-> NA        'Number of changes in educational biography (Sum)'                                                                       
+ SADDINST-> NA      'Number of learning domains with additional instruction'                                                                 
+ HADDINST-> NA      'Total hours of additional instruction (Sum)'                                                                            
+ ADDSCIIN-> NA      'Number of science disciplines and subjects  with additional instruction (Sum)'                                          
+ COMSCSUP-> NA      'Comparison science school lessons and additional instruction support (Mean)'                                            
+ COMSCSTRLE-> NA    'Comparison science school lessons and additional instruction structuredness lessons (Mean)'                             
+ COMSCSTRCO-> NA    'Comparison science school lessons and additional instruction structuredness content (Mean)'                             
+ COMSCTSREL-> NA    'Comparison science school lessons and additional instruction teacher-student relation'                                  
+ COMMASUP-> NA      'Comparison mathematics school lessons and additional instruction support (Mean)'                                        
+ COMMASTRLE-> NA    'Comparison mathematics school lessons and additional instruction structuredness lessons (Mean)'                         
+ COMMASTRCO-> NA    'Comparison mathematics school lessons and additional instruction structuredness content (Mean)'                         
+ COMMATSREL-> NA    'Comparison mathematics school lessons and additional instruction teacher-student relation' 
+ USESCH-> NA   	    'Use of ICT at school in general (WLE)'                                                                                  
+ INTICT-> NA        'Studentsí ICT Interest (WLE)'                                                                                        
+ COMPICT-> NA       'Studentsí Perceived ICT Competence (WLE)'                                                                            
+ AUTICT->NA         'Studentsí Perceived Autonomy related to ICT Use (WLE)'                                                               
+ SOIAICT->NA        'Studentsí ICT as a topic in Social Interaction (WLE)'                                                                
+ ICTHOME-> NA       'ICT available at Home Index (Sum)'                                                                                       
+ ICTSCH -> NA       'ICT available at School Index (Sum)'                                                                                    
+ PRESUPP-> NA       'Childís past science activities (WLE)'                                                                               
+ CURSUPP-> NA       'Parental current support for learning at home (WLE)'                                                                    
+ EMOSUPP-> NA       'Parental emotional support (WLE)'                                                                                       
+ PQSCHOOL-> NA      'Parents perceived school quality (WLE)'                                                                                 
+ PASCHPOL-> NA      'School policies for parental involvement (WLE)'                                                                         
+ PQGENSCI-> NA      'Parentsí view on science (WLE)'                                                                                      
+ PQENPERC-> NA      'Parents concerns regarding environmental topics (WLE)'                                                                  
+ PQENVOPT-> NA      'Parentsí view on future environmental topics (WLE)'                                                                  
+ 
+ unfairteacher 'Teacher Fairness (Sum)'                                                                                                 
+ PARED         'Index highest parental education in years of schooling'                                                                 
+ COBN_F        'Country of Birth National Categories- Father'                                                                           
+ COBN_M        'Country of Birth National Categories- Mother'                                                                           
+ COBN_S        'Country of Birth National Categories- Self'                                                                             
+ LANGN         'Language at home (3-digit code)'                                                                                        
+ OCOD1         'ISCO-08 Occupation code - Mother'                                                                                       
+ OCOD2         'ISCO-08 Occupation code - Father'                                                                                       
+ OCOD3         'ISCO-08 Occupation code - Self'                                                                                         
+ 
+ CULTPOSS      'Cultural possessions at home (WLE)'                                                                                     
+ HEDRES        'Home educational resources (WLE)'                                                                                       
+ HOMEPOS       'Home possessions (WLE)'                                                                                                 
+ ICTRES        'ICT Resources (WLE)'                                                                                                    
+ WEALTH        'Family wealth (WLE)'                                                                                                    
+ ESCS          'Index of economic, social and cultural status (WLE)'   
+
+GRADE
+AGE
+MISCED
+HISCED
+FISCED
+PARED
+CULTPOSS
+HEDRES
+WEALTH
+ICTRES
+HOMEPOS
+ESCS
+BFMJ2
+BMMJ1
+HISEI
+IMMIG
+COBN_F
+COBN_M
+COBN_S
+LANGN
+BELONG
+beingbullied
+unfairteacher
+LMINS
+MMINS
+SMINS
+TMINS
+OUTHOURS
+COOPERATE
+CPSVALUE
+ENVAWARE
+ENVOPT
+JOYSCIE
+INTBRSCI
+DISCLISCI
+IBTEACH
+
+TEACHSUP
+TDTEACH 
+ADINST
+BSMJ
+MOTIVAT
+DURECEC
+PERFEED
+INSTSCIE
+ANXTEST
+EMOSUPS
+REPEAT
+SCIEEFF 
+
+EPIST
+SCIEACT
+
+
+-+-+-+-+-+-+-+-+-+-+-+-+-+
+school level variables: The school principal completed the school questionnaire
+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+EDUSHORT      'Shortage of educational material (WLE)'
+STAFFSHORT    'Shortage of educational staff (WLE)'    
+STUBEHA       'Student behaviour hindering learning (WLE)'
+TEACHBEHA     'Teacher behaviour hindering learning (WLE)'
+STRATIO       'Student-Teacher ratio'
+STRATUM       'Stratum ID 7-character (cnt + region ID + original stratum ID)'
+SCHLTYPE      'School Ownership'  (1-Private Independent, 2-Private Govt-Dependent, 3-Public )
+                1    2    3 
+                282   82 8457 
+
+SCHSIZE       'School Size (Sum)'                                                                                                      
+ CLSIZE        'Class Size'                                                                                                             
+ RATCMP1       'Number of available computers per student at modal grade'                                                               
+ RATCMP2       'Proportion of available computers that are connected to the Internet'                                                   
+ LEAD          'Educational leadership (WLE)'                                                                                           
+ LEADCOM       'Curricular development (WLE)'                                                                                           
+ LEADINST      'Instructional leadership (WLE)'                                                                                         
+ LEADPD        'Professional development (WLE)'                                                                                         
+ LEADTCH       'Teachers participation (WLE)'                                                                                           
+
+RESPCUR
+RESPRES
+SCHAUT
+TEACHPART
+SCHLTYPE
+EDUSHORT
+STAFFSHORT
+PROAT5AB
+PROAT5AM
+PROAT6
+PROATCE
+TOTAT
+STRATIO
+PROSTAT
+PROSTCE TOTST
+CREACTIV
+SCIERES
+STUBEHA
+TEACHBEHA
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+                      Preprocessing the data
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+
+Byk column yg boleh d consider utk buang:
+- buang kerana value nya sama utk setiap rows
+- buang kerana doesnt give any significant meaning or it's already obvious
+
+
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+                                            Variables
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+student level variables:
+gender, school type, motivation, self-efficacy, attitude, behavior control, cases of failure, work discipline, mother education, father education, computer possession, age, and tablet possession
+
+school level variables:
+school revenues, number of mathematics teachers, number of students, teacher-student ratio, and the morale of teachers have a significant effect on predicting the mathematics literacy.
+
+
+
+
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+MSEM Model using Lavaan
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+
+sekolah2 yang data nya NAs:
+45800001 (n = 40) - LEADINST
+45800030 (n = 40) - SCHSIZE
+45800034 (n = 42) - SCHSIZE
+45800036 (n = 39) - LEADINST
+45800067 (n = 39) - SCHSIZE
+45800076 (n = 41) - SCHSIZE	CLSIZE	LEAD	LEADCOM	LEADINST	LEADPD	LEADTCH
+45800077 (n = 42) - LEADTCH
+45800089 (n = 42) - LEAD	LEADCOM	LEADINST	LEADPD	LEADTCH
+45800092 (n = 42) - SCHSIZE
+45800103 (n = 37) - SCHSIZE
+45800105 (n = 38) - LEADINST
+45800133 (n = 41) - LEADPD
+45800150 (n = 40) - CLSIZE	LEAD	LEADCOM	LEADINST	LEADPD	LEADTCH	EDUSHORT	STAFFSHORT	STUBEHA	TEACHBEHA	SCHLTYPE
+45800175 (n = 39) - LEADPD
+45800187 (n = 36) - LEADPD
+45800190 (n = 41) - LEAD	LEADCOM	LEADINST	LEADPD	LEADTCH
+45800204 (n = 18) - CLSIZE
+
+
+$School
+
+ CNTRYID       'Country Identifier'                                                                                                     
+ CNT           'Country code 3-character'                                                                                               
+ CNTSCHID      'Intl. School ID'                                                                                                        
+ CNTTCHID      'Intl. Teacher ID'                                                                                                       
+ TEACHERID     'Teacher identification code'                                                                                            
+ CYC           'PISA Assessment Cycle (2 digits + 2 character Assessment type - MS\FT)'                                                
+ NatCen        'National Centre 6-digit Code'                                                                                           
+ Region        'Region'                                                                                                                 
+ STRATUM       'Stratum ID 7-character (cnt + region ID + original stratum ID)'                                                         
+ SUBNATIO      'Adjudicated sub-region code 7-digit code (3-digit country code + region ID + stratum ID)'                               
+ OECD          'OECD country'                                                                                                           
+ ADMINMODE     'Mode of Respondent'                                                                                                     
+ LANGTEST      'Language of Questionnaire\Assessment'                                                                                  
+ TC001Q01NA    'Are you female or male?'                                                                                                
+ TC002Q01NA    'How old are you?'                                                                                                       
+ TC004Q01NA    'What is your employment status as a teacher at this school?'                                                            
+ TC005Q01NA    'What is your current employment status as a teacher? My employment status at this school'                               
+ TC005Q02NA    'What is your current employment status as a teacher? All my teaching employments together'                              
+ TC006Q01NA    'In how many schools have you worked in the course of your teaching career?'                                             
+ TC007Q01NA    'Year(s) working as a teacher at this school'                                                                            
+ TC007Q02NA    'Year(s) working as a teacher in total'                                                                                  
+ TC012Q01NA    'What is the highest level of formal education you have completed?'                                                      
+ TC013Q01NA    'After completing <ISCED level 3 or below>, was your goal to pursue a career in the teaching profession?'                
+ TC014Q01NA    'Did you complete a teacher education or training programme?'                                                            
+ TC015Q01NA    'How did you receive your teaching qualifications?'                                                                      
+ TC018Q01NA    'Reading, writing and literature: Included in my teacher education or training programme'                                
+ TC018Q01NB    'Reading, writing and literature: I teach it to the <national modal grade for 15-year-olds> in the current school year'  
+ TC018Q02NA    'Mathematics: Included in my teacher education or training programme or other professional qualification'                
+ TC018Q02NB    'Mathematics: I teach it to the <national modal grade for 15-year-olds> in the current school year'                      
+ TC018Q03NA    'Science: Included in my teacher education or training programme or other professional qualification'                    
+ TC018Q03NB    'Science: I teach it to the <national modal grade for 15-year-olds> in the current school year'                          
+ TC018Q04NA    'Technology: Included in my teacher education or training programme or other professional qualification'                 
+ TC018Q04NB    'Technology: I teach it to the <national modal grade for 15-year-olds> in the current school year'                       
+ TC018Q05NA    'Social studies: Included in my teacher education or training programme or other professional qualification'             
+ TC018Q05NB    'Social studies: I teach it to the <national modal grade for 15-year-olds> in the current school year'                   
+ TC018Q06NA    'Modern foreign languages: Included in my teacher education or training programme or other professional qualification'   
+ TC018Q06NB    'Modern foreign languages: I teach it to the <national modal grade for 15-year-olds> in the current school year'         
+ TC018Q07NA    'Ancient languages (e.g. Latin): Included in my teacher education or training programme'                                 
+ TC018Q07NB    'Ancient languages (e.g. Latin): I teach it to the <national modal grade for 15-year-olds> in the current school yr'     
+ TC018Q08NA    'Arts: Included in my teacher education or training programme or other professional qualification'                       
+ TC018Q08NB    'Arts: I teach it to the <national modal grade for 15-year-olds> in the current school year'                             
+ TC018Q09NA    'Physical education: Included in my teacher education or training programme or other professional qualif'                
+ TC018Q09NB    'Physical education: I teach it to the <national modal grade for 15-year-olds> in the current school year'               
+ TC018Q10NA    'Religion and\or ethics: Included in my teacher education or training programme or other professional qualif'           
+ TC018Q10NB    'Religion and\or ethics: I teach it to the <national modal grade for 15-year-olds> in the current school year'          
+ TC018Q11NA    'Practical and vocational skills: Included in my teacher education or training programme'                                
+ TC018Q11NB    'Practical and vocational skills: I teach it to the <national modal grade for 15-year-olds> in the current school yr'    
+ TC020Q01NA    'Activities: Qualification programme (e.g. a <degree programme>)'                                                        
+ TC020Q02NA    'Activities: Participation in a network of teachers formed specifically for the profes dev of teachers'                  
+ TC020Q03NA    'Activities: Individual or collaborative research on a topic of interest to you professionally'                          
+ TC020Q04NA    'Activities: Mentoring and\or peer observation and coaching, as part of a formal school arrangement'                    
+ TC020Q05NA    'Activities: Reading professional literature (e.g. journals, evidence-based papers, thesis papers)'                      
+ TC020Q06NA    'Activities: Engaging in informal dialogue with your colleagues on how to improve your teaching'                         
+ TC021Q01NA    'Are you required to take part in professional development activities?'                                                  
+ TC026Q01NA    'The advantages of being a teacher clearly outweigh the disadvantages.'                                                  
+ TC026Q02NA    'If I could decide again, I would still choose to work as a teacher.'                                                    
+ TC026Q04NA    'I regret that I decided to become a teacher.'                                                                           
+ TC026Q05NA    'I enjoy working at this school.'                                                                                        
+ TC026Q06NA    'I wonder whether it would have been better to choose another profession.'                                               
+ TC026Q07NA    'I would recommend my school as a good place to work.'                                                                   
+ TC026Q09NA    'I am satisfied with my performance in this school.'                                                                     
+ TC026Q10NA    'All in all, I am satisfied with my job.'                                                                                
+ TC028Q01NA    'Is your school's capacity to provide instruction hindered by? A lack of teaching staff.'                                
+ TC028Q02NA    'Inadequate or poorly qualified teaching staff.'                                                                         
+ TC028Q03NA    'A lack of assisting staff.'                                                                                             
+ TC028Q04NA    'Inadequate or poorly qualified assisting staff.'                                                                        
+ TC028Q05NA    'A lack of educational material (e.g. textbooks, IT equipment, library or laboratory material).'                         
+ TC028Q06NA    'Inadequate or poor quality educational material (e.g. textbooks, IT equipment, library or laboratory material).'        
+ TC028Q07NA    'A lack of physical infrastructure (e.g. building, grounds, heating\cooling, lighting and acoustic systems).'           
+ TC028Q08NA    'Inadequate or poor quality physical infrastructure'                                                                     
+ TC029Q01NA    'Teacher training: <Broad science> and technology content matter:knowledge and skills in any <broad science> disciplin'  
+ TC029Q02NA    'Teacher training: <school science>:teaching methodology related to <school science>, instructional skill'               
+ TC029Q03NA    'Teacher training: General topics in education:e.g. teacher-student interaction, class management, school evaluation'    
+ TC029Q04NA    'Teacher training: Other topics'                                                                                         
+ TC030Q01NA    'Prof. dev.: <Broad science> and technology content matter:knowledge and skills in any <broad science> discipline'       
+ TC030Q02NA    'Prof. dev.: Teaching and learning <school science>:methodology related to <school science>, instructional skills'       
+ TC030Q03NA    'Prof. dev.:General topics in education:teacher-student interaction, classroom manage, school eval, special ed,'         
+ TC030Q04NA    'Prof. dev.: Other topics'                                                                                               
+ TC039Q01NA    'Is there any formal curriculum for <school science> in <national modal grade for 15-year-olds>?'                        
+ TC041Q01NA    'How much emphasis is given to? Knowing basic science facts\principles'                                                 
+ TC041Q02NA    'How much emphasis is given to? Observing natural phenomena'                                                             
+ TC041Q03NA    'How much emphasis is given to? Providing explanations'                                                                  
+ TC041Q04NA    'How much emphasis is given to? Designing and planning experiments'                                                      
+ TC041Q05NA    'How much emphasis is given to? Conducting experiments or investigations'                                                
+ TC041Q06NA    'How much emphasis is given to? Integrating science with other subjects'                                                 
+ TC041Q07NA    'How much emphasis is given to? Relating what students are learning to their daily lives'                                
+ TC041Q08NA    'How much emphasis is given to? Incorporation the experiences of different ethnic groups and cultures'                   
+ TC043Q01NA    'Are parents informed about the availability and content of the <school science> curriculum?'                            
+ TC031Q04NA    'Regular coop among fellow <school science>? Discuss the achieve req for <school science> when setting tests.'           
+ TC031Q07NA    'Regular cooperation among your fellow <school science> ? To cooperate on what homework to give to our students.'        
+ TC031Q11NA    'Regular cooperation among your fellow <school science>? We discuss the criteria we use to grade written tests.'         
+ TC031Q13NA    'Regular cooperation among your fellow <school science>? We exchange tasks for lessons and homework'                     
+ TC031Q14NA    'Regular coop among your fellow <school science>? I prepare\teaching units with my fellow <school science> teachers.'   
+ TC031Q15NA    'Regular cooperation among your fellow <school science>? We discuss ways to teach learning strategies\techniques'       
+ TC031Q18NA    'Regular cooperation among your fellow <school science>? <school science> teachers benefit from specif skills\interest' 
+ TC031Q20NA    'Regular cooperation among your fellow <school science>? We discuss ways identify students' individual strengh\weak.'   
+ TC037Q01NA    'How often does this happen in your <school science> lessons? Students are asked to draw conclusions'                    
+ TC037Q02NA    'How often does this happen in your <school science> lessons? Students are given opportunities to explain their ideas.'  
+ TC037Q03NA    'How often does this happen in your <school science> lessons? I explain scientific ideas.'                               
+ TC037Q04NA    'How often does this happen in your <school science> lessons? A small group discussion between students takes place.'    
+ TC037Q05NA    'How often does this happen in your <school science> lessons? A whole class discussion takes place'                      
+ TC037Q06NA    'How often does this happen in your <school science> lessons? Current scientific issues are discussed.'                  
+ TC037Q07NA    'How often does this happen in your <school science> lessons? Students make calculations using scientific formulas.'     
+ TC037Q08NA    'How often does this happen in your <school science> lessons? I use an interactive white board.'                         
+ TC037Q09NA    'How often does this happen in your <school science> lessons? Students do their own scientific study\related research.' 
+ TC037Q10NA    'How often does this happen in your <school science> lessons? I discuss questions that students ask.'                    
+ TC037Q11NA    'How often does this happen in your <school science> lessons? Students carry out ?practical work.'                    
+ TC037Q12NA    'How often does this happen in your <school science> lessons? Students write up laboratory reports.'                     
+ TC037Q13NA    'How often does this happen in your <school science> lessons? I demonstrate an idea.'                                    
+ TC037Q14NA    'How often does this happen in your <school science> lessons? I discuss questions of practical relevance.'               
+ TC037Q15NA    'How often does this happen in your <school science> lessons? Students read materials from a textbook.'                  
+ TC037Q16NA    'How often does this happen in your <school science> lessons? Students take notes from the board.'                       
+ TC037Q17NA    'How often does this happen in your <school science> lessons? Students discuss materials from a textbook.'               
+ TC037Q18NA    'How often does this happen in your <school science> lessons? Students watch videos.'                                    
+ TC037Q19NA    'How often does this happen in your <school science> lessons? Students use the internet.'                                
+ TC037Q20NA    'How often does this happen in your <school science> lessons? The class corrects homework or a test.'                    
+ TC037Q21NA    'How often does this happen in your <school science> lessons? Students fill out worksheets.'                             
+ TC037Q22NA    'How often does this happen in your <school science> lessons? Students present something to the rest of the class.'      
+ TC033Q04NA    'Design experiments and hands-on activities for <inquiry-based learning>'                                                
+ TC033Q05NA    'Assign tailored tasks to the weakest as well as to the best students'                                                   
+ TC033Q06NA    'Use a variety of assessment strategies'                                                                                 
+ TC033Q08NA    'Facilitate a discussion among students on how to interpret experimental findings'                                       
+ TC034Q01NA    'Explain a complex scientific concept to a fellow teacher'                                                               
+ TC034Q02NA    'State and defend an informed position on ethical problems relating to <broad science>'                                  
+ TC034Q04NA    'Read state-of-the art papers in my scientific discipline'                                                               
+ TC034Q06NA    'Explain the links between biology, physics and chemistry'                                                               
+ TC045Q01NA    'Included in my teacher ed, training: Knowledge and understanding of subject field(s)'                                   
+ TC045Q01NB    'Included in my prof dev: Knowledge and understanding of subject field(s)'                                               
+ TC045Q02NA    'Included in my teacher ed, training: Pedagogical competencies in teaching any subject field(s)'                         
+ TC045Q02NB    'Included in my prof dev: Pedagogical competencies in teaching any subject field(s)'                                     
+ TC045Q03NA    'Included in my teacher ed, training: Knowledge of the curriculum'                                                       
+ TC045Q03NB    'Included in my prof dev: Knowledge of the curriculum'                                                                   
+ TC045Q04NA    'Included in my teacher ed, training: Student assessment practices'                                                      
+ TC045Q04NB    'Included in my prof dev: Student assessment practices'                                                                  
+ TC045Q05NA    'Included in my teacher ed, training: ICT skills for teaching'                                                           
+ TC045Q05NB    'Included in my prof dev: ICT skills for teaching'                                                                       
+ TC045Q06NA    'Included in my teacher ed, training: Student behaviour and classroom management'                                        
+ TC045Q06NB    'Included in my prof dev: Student behaviour and classroom management'                                                    
+ TC045Q07NA    'Included in my teacher ed, training: School management and administration'                                              
+ TC045Q07NB    'Included in my prof dev: School management and administration'                                                          
+ TC045Q08NA    'Included in my teacher ed, training: Approaches to individualized learning'                                             
+ TC045Q08NB    'Included in my prof dev: Approaches to individualized learning'                                                         
+ TC045Q09NA    'Included in my teacher ed, training: Teaching students with special needs'                                              
+ TC045Q09NB    'Included in my prof dev: Teaching students with special needs'                                                          
+ TC045Q10NA    'Included in my teacher ed, training: Teaching in multicultural or multilingual setting'                                 
+ TC045Q10NB    'Included in my prof dev: Teaching in multicultural or multilingual setting'                                             
+ TC045Q11NA    'Included in my teacher ed, training: Teaching cross-curricular skills'                                                  
+ TC045Q11NB    'Included in my prof dev: Teaching cross-curricular skills'                                                              
+ TC045Q12NA    'Included in my teacher ed, training: Student career guidelines and counselling'                                         
+ TC045Q12NB    'Included in my prof dev: Student career guidelines and counselling'                                                     
+ TC045Q13NA    'Included in my teacher ed, training: Internal evaluation or self- evaluation'                                           
+ TC045Q13NB    'Included in my prof dev: Internal evaluation or self- evaluation'                                                       
+ TC045Q14NA    'Included in my teacher ed, training: Use of evaluation results'                                                         
+ TC045Q14NB    'Included in my prof dev: Use of evaluation results'                                                                     
+ TC045Q15NA    'Included in my teacher ed, training: Teacher-parent cooperation'                                                        
+ TC045Q15NB    'Included in my prof dev: Teacher-parent cooperation'                                                                    
+ TC060Q02NA    'The principal tries to achieve consensus with all staff when defining priorities and goals in school.'                  
+ TC060Q04NA    'The principal is aware of my needs.'                                                                                    
+ TC060Q06NA    'The principal inspires new ideas for my professional learning.'                                                         
+ TC060Q07NA    'The principal treats teaching staff as professionals.'                                                                  
+ TC060Q09NA    'The principal ensures our involvement in decision making.'                                                              
+ TC046Q01NA    'Teach jointly as a team in the same class'                                                                              
+ TC046Q02NA    'Observe other teachers classes and provide feedback'                                                                    
+ TC046Q03NA    'Engage in joint activities across different classes and age groups (e.g. projects)'                                     
+ TC046Q04NA    'Exchange teaching materials with colleagues'                                                                            
+ TC046Q05NA    'Engage in discussions about the learning development of specific students'                                              
+ TC046Q06NA    'Work with other teachers in my school to ensure common standards in evaluations for assessing student progress'         
+ TC046Q07NA    'Attend team conferences'                                                                                                
+ TC046Q08NA    'Take part in collaborative professional learning'                                                                       
+ TC048Q01NA    'Doing some short task (10 minutes to 2 hours) in teams such as exercises or problems'                                   
+ TC048Q02NA    'Conducting a longer project (over several weeks) in teams such as writing a document, inventing something, etc.'        
+ TC048Q03NA    'Preparing and giving a talk\presentation together'                                                                     
+ TC051Q01NA    'Team collaboration activities? No appreciations'                                                                        
+ TC051Q02NA    'Team collaboration activities? Individual appreciations for individual performance'                                     
+ TC051Q03NA    'Team collaboration activities? Collective appreciations for a group product'                                            
+ TC051Q04NA    'Team collaboration activities? Collective appreciations for individual contributions'                                   
+ TC051Q05NA    'Team collaboration activities? Individual appreciations for a group product'                                            
+ TC052Q01NA    'Types Team collaboration activities? ?Members of groups work according to specialisation of each member'             
+ TC052Q02NA    'Types Team collaboration activities? ?Members of groups work on a collective outcome'                                
+ TC052Q03NA    'Types Team collaboration activities? ?Group members receive different information (resource interdependence)'        
+ TC052Q04NA    'Types Team collaboration activities? ?Group members are assigned different roles (role interdependence)'             
+ TC053Q01NA    'Grouping practices? Groups with a mix of abilities'                                                                     
+ TC053Q02NA    'Grouping practices? Groups of students with similar abilities'                                                          
+ TC053Q03NA    'Grouping practices? Groups as the students choose them'                                                                 
+ TC054Q01NA    'I develop and administer my own assessment.'                                                                            
+ TC054Q02NA    'I administer a <standardised test>.'                                                                                    
+ TC054Q03NA    'I have individual students answer questions in front of the class.'                                                     
+ TC054Q04NA    'Provide written feedback on student work in addition to a <mark, i.e. numeric score or letter grade>.'                  
+ TC054Q05NA    'I let students judge their own progress.'                                                                               
+ TC054Q06NA    'I observe students when working on particular tasks and provide immediate feedback.'                                    
+ TC054Q07NA    'I collect data from classroom assignments or home work.'                                                                
+ TC055Q01NA    'Assign final <semester> grades to students in <national modal grade for 15-year-olds> Student improvement <semester>.'  
+ TC055Q02NA    'Assign final <semester>\<national modal grade for 15-year-olds>? I consider students' problem solving ability.'        
+ TC055Q03NA    'Assign final <semester> \<national modal grade for 15-year-olds>? I consider students' critical thinking ability.'     
+ TC055Q04NA    'Assign final <semester>\<national modal grade for 15-year-olds>? Consider performance in collaborative problem solvin' 
+ TC055Q05NA    'Assign final <semester>\<national modal grade for 15-year-olds>? I recognize students' effort'                         
+ TC055Q06NA    'Assign final <semester>\<national modal grade for 15-year-olds>? Performance in the current course to \previous cours'
+ TC055Q07NA    'Assign final <semester>\<national modal grade for 15-year-olds>? Other students in the course.'                        
+ TC055Q08NA    'Assign final <semester>\<national modal grade for 15-year-olds>? Written <national or regional performance standards>' 
+ TC055Q11NA    'Assign final <semester> grades to students in <national modal grade for 15-year-olds>? I consider the degree to which'  
+ TC055Q13NA    'Final <semester> grades in <national modal grade for 15-year-olds>? Grs <standardised tests>,<country specific exampl'  
+ TC055Q14NA    'Final <semester> grades to students in <national modal grade for 15-year-olds>? Non-mand., <country specific examples'  
+ EMPLSTATd     'Employment Status Contract - dichotomous'                                                                               
+ EMPLTIM1      'Teacher Employment Time - 4 steps'                                                                                      
+ EMPLTIM2      'Teacher Employment Time - dichotomous.'                                                                                 
+ NSCHEMPL      'Number of schools employed by ? dichotomous'                                                                         
+ OTT1          'Originally trained teacher (wide definition): standard, in-service, or work-based teacher training'                     
+ OTT2          'Originally trained teacher (strict definition): standard teacher training'                                              
+ NTEACH1       'Subject included in initial training: Reading, writing and literature'                                                  
+ NTEACH2       'Subject included in initial training: Mathematics'                                                                      
+ NTEACH3       'Subject included in initial training: Science'                                                                          
+ NTEACH4       'Subject included in initial training: Technology'                                                                       
+ NTEACH5       'Subject included in initial training: Social studies'                                                                   
+ NTEACH6       'Subject included in initial training: Modern foreign languages'                                                         
+ NTEACH7       'Subject included in initial training: Ancient languages (e.g. Latin)'                                                   
+ NTEACH8       'Subject included in initial training: Arts'                                                                             
+ NTEACH9       'Subject included in initial training: Physical education'                                                               
+ NTEACH10      'Subject included in initial training: Religion and\or ethics'                                                          
+ NTEACH11      'Subject included in initial training: Practical and vocational skills'                                                  
+ STTMG1        'Overlap between initial education and teaching the modal grade - Reading, writing and literature'                       
+ STTMG2        'Overlap between initial education and teaching the modal grade - Mathematics'                                           
+ STTMG3        'Overlap between initial education and teaching the modal grade - Science'                                               
+ STTMG4        'Overlap between initial education and teaching the modal grade - Technology'                                            
+ STTMG5        'Overlap between initial education and teaching the modal grade - Social Studies'                                        
+ STTMG6        'Overlap between initial education and teaching the modal grade - Modern foreign languages'                              
+ STTMG7        'Overlap between initial education and teaching the modal grade - Ancient languages'                                     
+ STTMG8        'Overlap between initial education and teaching the modal grade - Arts'                                                  
+ STTMG9        'Overlap between initial education and teaching the modal grade - Physical education'                                    
+ STTMG10       'Overlap between initial education and teaching the modal grade - Religion and-or ethics'                                
+ STTMG11       'Overlap between initial education and teaching the modal grade - Practical and vocational skills'                       
+ PROPDT20      'Participated in professional development in the last 12 months'                                                         
+ SATJOB        'Satisfaction with the current job environment (WLE)'                                                                    
+ SATTEACH      'Satisfaction with teaching profession (WLE)'                                                                            
+ TCEDUSHORT    'Educational material shortage teachers view (WLE)'                                                                      
+ TCSTAFFSHORT  'Staff shortage teachers view (WLE)'                                                                                     
+ COLSCIT       'Science teacher collaboration (WLE)'                                                                                    
+ SETEACH       'Self-efficacy related to teaching science content (WLE)'                                                                
+ SECONT        'Self-efficacy related to science content (WLE)'                                                                         
+ TC045Q01      'Knowledge and understanding of my subject field(s)'                                                                     
+ TC045Q02      'Pedagogical competencies in teaching my subject field(s)'                                                               
+ TC045Q03      'Knowledge of the curriculum'                                                                                            
+ TC045Q04      'Student assessment practices'                                                                                           
+ TC045Q05      'ICT (information and communication technology) skills for teaching'                                                     
+ TC045Q06      'Student behaviour and classroom management'                                                                             
+ TC045Q07      'School management and administration'                                                                                   
+ TC045Q08      'Approaches to individualised learning'                                                                                  
+ TC045Q09      'Teaching students with special needs'                                                                                   
+ TC045Q10      'Teaching in a multicultural or multilingual setting'                                                                    
+ TC045Q11      'Teaching cross-curricular skills (e.g. problem solving, learning-to-learn)'                                             
+ TC045Q12      'Student career guidance and counselling'                                                                                
+ TC045Q13      'Internal evaluation or self-evaluation of schools'                                                                      
+ TC045Q14      'Use of evaluation results'                                                                                              
+ TC045Q15      'Teacher-Parent co-operation'                                                                                            
+ EXCHT         'Exchange and co-ordination for teaching (WLE)'                                                                          
+ TCLEAD        'Transformational leadership teachers view (WLE)'                                                                        
+ W_SCHGRNRABWT 'GRADE NONRESPONSE ADJUSTED SCHOOL BASE WEIGHT'                                                                          
+ VER_DAT       'Date of the database creation'                                                                                          
+
+
+$`Country abbreviations`
+[1] "ALB" "ARG" "KAZ" "MYS"
+
+
+
+
+
+
+str(pisaMas2015, list.len=ncol(pisaMas2015))
+pisaMalaysia$SEX <- pisaMalaysia$ST004D01T
+
+
+#pisaMalaysia$SEX[pisaMalaysia$SEX == "1"] <- "Female"
+#pisaMalaysia$SEX[pisaMalaysia$SEX == "2"] <- "Male"
+
+#upon further pre-process of the data, schid 45800150 (n=40) yeilds NAs in school's questionnaire
+
+write.csv(pisaMalaysia,'pisaMalaysia.csv',row.names = FALSE)
+pisaMalaysia <- read.csv("pisaMalaysia.csv")
+
+pisaMalaysia$SEX <- as.factor(pisaMalaysia$SEX)
+pisaMalaysia$SCHLTYPE <- as.factor(pisaMalaysia$SCHLTYPE)
+pisaMalaysia$CNTRYID <- as.factor(pisaMalaysia$CNTRYID)
+pisaMalaysia$CNTSCHID <- as.factor(pisaMalaysia$CNTSCHID)
+pisaMalaysia$CNTSTUID <- as.factor(pisaMalaysia$CNTSTUID)
+pisaMalaysia$BOOKID <- as.factor(pisaMalaysia$BOOKID)
+
+str(pisaMalaysia, list.len=ncol(pisaMalaysia))
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+#                                   Data Checking & Cleaning & Preprocessing
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+# ---------------------------------- #
+# Exploring the data
+# ---------------------------------- #
+
+# Data types note:
+# factor = categorical or numerical data types that helps to explain a limited data values (eg: binary (0,1), male & female, etc)
+#   so if the data in integer (int) and we are not going to use it like for add,minus,multiply and so on, 
+#   it's probably better to change it to a factor
+
+
+#This line of code will check for every columns if there's any missing values (NAs)
+sapply(pisaMas2015, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
+
+#how does the data look like?
+dim(pisaMas2015)  #shows me the number of rows and columns in the data set
+summary(pisaMas2015)
+
+#how many clusters?
+length(table(pisaMalaysia$CNTSCHID))
+pisaMalaysia[pisaMalaysia==""]  <- NA # This data has blanks.  Let's convert the blanks to "NA"
+
+#what are the different cluster sizes?
+table(table(pisaMalaysia$CNTSCHID))
+
+# if you want to see how may unique values there are for each column:
+sapply(pisaMalaysia, function(x) length(unique(x)))
+
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+#                                                  Data Integration  
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+#                                                       &
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+#                       Data Transformation/Model Exploratory (Featue Engineering)
+# ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
+
+
+# BRAINSTORMING FEATURE ENGINEERING - IDEAS
+# adding new features as well as construct new tables according to each subjects separately for easy analysis
+# later will integrate these tables into a single new table for final ranking
+
+
+# ---------------------------------- #
+# a.	Brainstorming of features
+# ---------------------------------- #
+# what's our goal in this? we want to build a ML model to predict the students' final grade.
+# in order to reach our goal we can massage our data to the needs of our curiosity like adding new columns to the existing one to make more sense of the data
+# for example adding total grade as a new column that combined G1, G2 and G3.
+# and maybe from that column we can create a new column (class) to class students with low(0 - 29), medium(30 - 47) and high grade(48 - 60)
+# and maybe we can create fail and pass features being 0-9 is fail and above that is a passing marks
+
+# ---------------------------------- #
+# b.	Devising features
+# ---------------------------------- #
+
+# ---------------------------------- #
+# c.	Selection of features 
+# ---------------------------------- #
+
+# ---------------------------------- #
+# d.	Classification of Models
+# ---------------------------------- #
+
+
+# ---------------------------------- #
+# e.	Model Evaluations LAVAAN
+# ---------------------------------- #
+
+# Analyze the data after imputation using mice
+imputedPisa <- mice(pisaMas2015,maxit = 0,m=5)
+summary(imputedPisa)
+
+#impPISA <- complete(imputedPisa,"repeated",include = TRUE) #imputed data append in new collumn
+impPISALong <- complete(imputedPisa,"long",include = FALSE) #imputed data stacked in the same collumn, exclude original data
+
+#check the structure of the new imputed data
+str(imputedPisa, list.len=ncol(imputedPisa))
+
+# ----------------------------------------- ANALYSIS NO 1 ----------------------------------------- #
+# one level model with all variables from Science learning in school
+# took quite some time to process - need to investigate more
+# lots of warning after executing fit.surv1
+# ----------------------------------------- ANALYSIS NO 1 ----------------------------------------- #
+
+model.pisa1 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Science learning in school
+#Inquiry-based science teaching and learning practices (IBTEACH)
+IBTEACH   =~ ST098Q01TA+ST098Q02TA+ST098Q03NA+ST098Q05TA+ST098Q06TA+ST098Q07TA+ST098Q08NA+ST098Q09TA+ST098Q10NA 
+#Teacher support in a science classes (TEACHSUP)          
+TEACHSUP  =~ ST100Q01TA+ST100Q02TA+ST100Q03TA+ST100Q04TA+ST100Q05TA
+#Teacher-directed science instruction (TDTEACH)
+TDTEACH   =~ ST103Q01NA+ST103Q03NA+ST103Q08NA+ST103Q11NA
+#Perceived Feedback (PERFEED)
+PERFEED   =~ ST104Q01NA+ST104Q02NA+ST104Q03NA+ST104Q04NA+ST104Q05NA
+#Adaption of instruction (ADINST)
+ADINST    =~ ST107Q01NA+ST107Q02NA+ST107Q03NA
+#Instrumental motivation (INSTSCIE)
+INSTSCIE  =~ ST113Q01TA+ST113Q02TA+ST113Q03TA+ST113Q04TA
+#Disciplinary climate in science classes (DISCLISCI)        
+DISCLISCI =~ ST097Q01TA+ST097Q02TA+ST097Q03TA+ST097Q04TA+ST097Q05TA
+
+
+
+science ~ ST004D01T + SCHLTYPE + ESCS
+
+'
+
+des.rep1 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+fit1 <- lavaan(model.pisa1, data=impPISALong, auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv1 <-lavaan.survey(lavaan.fit=fit1, survey.design=des.rep1)
+# 1 mins
+
+#analysis 1
+sink("analysis1.txt")
+summary(fit.surv1, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv1,"chisq")
+sink()
+
+# ----------------------------------------- ANALYSIS NO 2 ----------------------------------------- #
+# one level model with all variables from Science learning in school
+# nice model - with no warning after executing fit.surv2 - good sign that this model fit nicely
+# ----------------------------------------- ANALYSIS NO 2 ----------------------------------------- #
+
+
+model.pisa2 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Science-related dispositions / Other science related
+#Science self-efficacy (SCIEEFF)  
+selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
+#Epistemological beliefs (EPIST)
+epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
+#Science activities (SCIEACT)
+scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
+
+
+science ~ selfEfficay + epistBelief + scieActivities + ST004D01T + SCHLTYPE + ESCS 
+
+'
+des.rep2 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+fit2 <- lavaan(model.pisa2, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv2 <-lavaan.survey(lavaan.fit=fit2, survey.design=des.rep2)
+
+vartable(fit2)
+
+#analysis 2
+sink("analysis2.txt")
+summary(fit.surv2, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv2,"chisq")
+sink()
+
+
+
+# ----------------------------------------- ANALYSIS NO 3 ----------------------------------------- #
+# one level model - SCIELEARNSCHOOL
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 3 ----------------------------------------- #
+
+model.pisa3 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Students’ dispositions for collaborative problem solving
+#Enjoy co-operation (COOPERATE)
+COOPERATE =~ ST082Q02NA+ST082Q03NA+ST082Q08NA+ST082Q12NA
+#Value co-operation (CPSVALUE)
+CPSVALUE =~ ST082Q01NA+ST082Q09NA+ST082Q13NA+ST082Q14NA
+
+science ~ COOPERATE + CPSVALUE + ST004D01T + SCHLTYPE + ESCS
+
+'
+
+des.rep3 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+fit3 <- lavaan(model.pisa3, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv3 <-lavaan.survey(lavaan.fit=fit3, survey.design=des.rep3)
+# 10 mins with cluster = "CNTSCHID" included 
+# 8 mins with no cluster = "CNTSCHID" included + with correlation 
+# 8 mins NEW DESIGN - FAILED
+
+#analysis 3 - no correlation + with cluster
+sink("analysis3.txt")
+summary(fit.surv3, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv3,"chisq")
+sink()
+
+
+
+# ----------------------------------------- ANALYSIS NO 4 ----------------------------------------- #
+# one level model - OTHERSCIERELATED
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 4 ----------------------------------------- #
+
+
+model.pisa4 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Sense of Belonging in School
+#Sense of Belonging to School (BELONG)
+BELONG =~ ST034Q01TA+ST034Q02TA+ST034Q03TA+ST034Q04TA+ST034Q05TA+ST034Q06TA
+
+science ~ BELONG + ST004D01T + SCHLTYPE + ESCS
+
+'
+
+des.rep4 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+
+fit4 <- lavaan(model.pisa4, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv4 <-lavaan.survey(lavaan.fit=fit4, survey.design=des.rep4)
+# 7 mins to finish execute!
+# 8 mins to finish execute! NEW DESIGN  
+
+#analysis 4
+sink("analysis4.txt")
+summary(fit.surv4, fit.measures = TRUE, standardized = TRUE) 
+fitmeasures(fit.surv4,"chisq")
+sink()
+
+
+# ----------------------------------------- ANALYSIS NO 5 ----------------------------------------- #
+# one level 
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 5 ----------------------------------------- #
+
+
+model.pisa5 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Interest in science
+#Enjoyment of science (JOYSCIE)
+JOYSCIE =~ ST094Q01NA+ST094Q02NA+ST094Q03NA+ST094Q04NA+ST094Q05NA
+#Interest in broad science topics (INTBRSCI)
+INTBRSCI =~ ST095Q04NA+ST095Q07NA+ST095Q08NA+ST095Q13NA+ST095Q15NA
+
+science ~ JOYSCIE + INTBRSCI + ST004D01T + SCHLTYPE + ESCS
+'
+
+des.rep5 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+
+fit5 <- lavaan(model.pisa5, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv5 <-lavaan.survey(lavaan.fit=fit5, survey.design=des.rep5)
+
+#analysis 5
+sink("analysis5COMBINE.txt")
+summary(fit.surv5, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv5,"chisq")
+sink()
+
+
+# ----------------------------------------- ANALYSIS NO 6 ----------------------------------------- #
+# one level 
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 6 ----------------------------------------- #
+
+model.pisa6 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Students ́ motivation
+#Test Anxiety (ANXTEST)
+ANXTEST =~ ST118Q01NA+ST118Q02NA+ST118Q03NA+ST118Q04NA+ST118Q05NA
+#Achievement motivation (MOTIVAT)
+MOTIVAT =~ ST119Q01NA+ST119Q02NA+ST119Q03NA+ST119Q04NA+ST119Q05NA
+
+science ~ ANXTEST + MOTIVAT + ST004D01T + SCHLTYPE + ESCS
+
+'
+
+des.rep6 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+
+fit6 <- lavaan(model.pisa6, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv6 <-lavaan.survey(lavaan.fit=fit6, survey.design=des.rep6)
+
+
+#analysis 6
+sink("analysis6COMBINE.txt")
+summary(fit.surv6, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv6,"chisq")
+sink()
+
+
+# ----------------------------------------- ANALYSIS NO 7 ----------------------------------------- #
+# one level model
+# Students’ dispositions for collaborative problem solving
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 7 ----------------------------------------- #
+
+
+model.pisa7 <- '
+science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+#Parental Supports
+#Parents emotional support (EMOSUPS)
+EMOSUPS =~ ST123Q01NA+ST123Q02NA+ST123Q03NA+ST123Q04NA            
+
+science ~  EMOSUPS + ST004D01T + SCHLTYPE + ESCS
+
+'
+
+fit7 <- lavaan(model.pisa7, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+des.rep7 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+fit.surv7 <-lavaan.survey(lavaan.fit=fit7, survey.design=des.rep7)
+# 1 mins to finish execute!
+
+
+#analysis 7
+sink("analysis7.txt")
+summary(fit.surv7, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv7,"chisq")
+sink()
+
+
+# ----------------------------------------- ANALYSIS NO 8 ----------------------------------------- #
+# one level model
+# Students’ dispositions for collaborative problem solving
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 7 ----------------------------------------- #
+
+
+model.pisa8 <- '
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Environmental awareness and optimism
+            #Environmental Awareness (ENVAWARE)
+            ENVAWARE =~ ST092Q01TA+ST092Q02TA+ST092Q04TA+ST092Q05TA+ST092Q06NA+ST092Q08NA+ST092Q09NA
+            #Item parameters for Environmental optimism (ENVOPT)
+            ENVOPT =~ ST093Q01TA+ST093Q03TA+ST093Q04TA+ST093Q05TA+ST093Q06TA+ST093Q07NA+ST093Q08NA
+
+            science ~  ENVAWARE + ENVOPT + ST004D01T + SCHLTYPE + ESCS
+
+'
+
+des.rep8 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+
+fit8 <- lavaan(model.pisa7, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM")
+fit.surv8 <-lavaan.survey(lavaan.fit=fit8, survey.design=des.rep8)
+
+
+
+#analysis 7
+sink("analysis8.txt")
+summary(fit.surv8, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv8,"chisq")
+sink()
+
+
+
+
+
+
+
+

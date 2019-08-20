@@ -137,17 +137,53 @@ pisaMas2015 <- pisa.select.merge(student.file = "CY6_MS_CM2_STU_QQQ.sav",
                                             
                                             #Quantity of teaching staff at school
                                             #total number of teachers at their school (TOTAT)
-                                            "TOTAT" # not done yet
-                                            
+                                            "TOTAT",
+                                            #proportion of fully certified teachers (PROATCE)
+                                            "PROATCE",
+                                            #proportion of teachers with an ISCED 5A bachelor qualification (PROAT5AB)
+                                            "PROAT5AB",
+                                            #proportion of teachers with an ISCED 5A master qualification (PROAT5AM)
+                                            "PROAT5AM",
+                                            #proportion of teachers with an ISCED level 6 qualification (PROAT6)
+                                            "PROAT6",
+                                            #student-teacher ratio (STRATIO)
+                                            "STRATIO",
+                                            #proportion of science teachers (PROSTAT)
+                                            "PROSTAT"
                                             ),
                                 countries = "MYS"
                                 )    
 
-#Check data structure of the merged files 
-str(pisaMas2015, list.len=ncol(pisaMas2015))
 
 write.csv(pisaMas2015,'pisaMalaysia.csv',row.names = FALSE)
 pisaMalaysia <- read.csv("pisaMalaysia.csv")
+
+
+# ---------------------------------- #
+# Exploring the data
+# ---------------------------------- #
+
+#Check data structure of the merged files 
+str(pisaMas2015, list.len=ncol(pisaMas2015))
+
+
+#This line of code will check for every columns if there's any missing values (NAs)
+sapply(pisaMas2015, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
+
+#how does the data look like?
+dim(pisaMas2015)  #shows me the number of rows and columns in the data set
+summary(pisaMas2015)
+
+#how many clusters?
+length(table(pisaMalaysia$CNTSCHID))
+pisaMalaysia[pisaMalaysia==""]  <- NA # This data has blanks.  Let's convert the blanks to "NA"
+
+#what are the different cluster sizes?
+table(table(pisaMalaysia$CNTSCHID))
+
+# if you want to see how may unique values there are for each column:
+sapply(pisaMalaysia, function(x) length(unique(x)))
+
 
 
 # ---------------------------------- #
@@ -163,6 +199,9 @@ impPISALong <- complete(imputedPisa,"long",include = FALSE) #imputed data stacke
 
 #check the structure of the new imputed data
 str(imputedPisa, list.len=ncol(imputedPisa))
+
+#This line of code will check for every columns if there's any missing values (NAs)
+sapply(impPISALong, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
 
 # ----------------------------------------- ANALYSIS NO 1 ----------------------------------------- #
 # one level model with all variables from Science learning in school
@@ -452,7 +491,7 @@ fit.surv8 <-lavaan.survey(lavaan.fit=fit8, survey.design=des.rep8)
 
 
 
-#analysis 7
+#analysis 8
 sink("analysis8.txt")
 summary(fit.surv8, fit.measures = TRUE, standardized = TRUE)
 fitmeasures(fit.surv8,"chisq")

@@ -936,9 +936,7 @@ str(pisaMalaysia, list.len=ncol(pisaMalaysia))
 # ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
 #                                   Data Checking & Cleaning & Preprocessing
 # ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
-# ---------------------------------- #
-# Exploring the data
-# ---------------------------------- #
+
 
 # Data types note:
 # factor = categorical or numerical data types that helps to explain a limited data values (eg: binary (0,1), male & female, etc)
@@ -946,22 +944,7 @@ str(pisaMalaysia, list.len=ncol(pisaMalaysia))
 #   it's probably better to change it to a factor
 
 
-#This line of code will check for every columns if there's any missing values (NAs)
-sapply(pisaMas2015, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
 
-#how does the data look like?
-dim(pisaMas2015)  #shows me the number of rows and columns in the data set
-summary(pisaMas2015)
-
-#how many clusters?
-length(table(pisaMalaysia$CNTSCHID))
-pisaMalaysia[pisaMalaysia==""]  <- NA # This data has blanks.  Let's convert the blanks to "NA"
-
-#what are the different cluster sizes?
-table(table(pisaMalaysia$CNTSCHID))
-
-# if you want to see how may unique values there are for each column:
-sapply(pisaMalaysia, function(x) length(unique(x)))
 
 # ---------------------------------- ## ---------------------------------- ## ---------------------------------- #
 #                                                  Data Integration  

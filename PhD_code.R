@@ -171,27 +171,27 @@ str(imputedPisa, list.len=ncol(imputedPisa))
 # ----------------------------------------- ANALYSIS NO 1 ----------------------------------------- #
 
 model.pisa1 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+        science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
 
-#Science learning in school
-#Inquiry-based science teaching and learning practices (IBTEACH)
-IBTEACH   =~ ST098Q01TA+ST098Q02TA+ST098Q03NA+ST098Q05TA+ST098Q06TA+ST098Q07TA+ST098Q08NA+ST098Q09TA+ST098Q10NA 
-#Teacher support in a science classes (TEACHSUP)          
-TEACHSUP  =~ ST100Q01TA+ST100Q02TA+ST100Q03TA+ST100Q04TA+ST100Q05TA
-#Teacher-directed science instruction (TDTEACH)
-TDTEACH   =~ ST103Q01NA+ST103Q03NA+ST103Q08NA+ST103Q11NA
-#Perceived Feedback (PERFEED)
-PERFEED   =~ ST104Q01NA+ST104Q02NA+ST104Q03NA+ST104Q04NA+ST104Q05NA
-#Adaption of instruction (ADINST)
-ADINST    =~ ST107Q01NA+ST107Q02NA+ST107Q03NA
-#Instrumental motivation (INSTSCIE)
-INSTSCIE  =~ ST113Q01TA+ST113Q02TA+ST113Q03TA+ST113Q04TA
-#Disciplinary climate in science classes (DISCLISCI)        
-DISCLISCI =~ ST097Q01TA+ST097Q02TA+ST097Q03TA+ST097Q04TA+ST097Q05TA
+        #Science learning in school
+        #Inquiry-based science teaching and learning practices (IBTEACH)
+        IBTEACH   =~ ST098Q01TA+ST098Q02TA+ST098Q03NA+ST098Q05TA+ST098Q06TA+ST098Q07TA+ST098Q08NA+ST098Q09TA+ST098Q10NA 
+        #Teacher support in a science classes (TEACHSUP)          
+        TEACHSUP  =~ ST100Q01TA+ST100Q02TA+ST100Q03TA+ST100Q04TA+ST100Q05TA
+        #Teacher-directed science instruction (TDTEACH)
+        TDTEACH   =~ ST103Q01NA+ST103Q03NA+ST103Q08NA+ST103Q11NA
+        #Perceived Feedback (PERFEED)
+        PERFEED   =~ ST104Q01NA+ST104Q02NA+ST104Q03NA+ST104Q04NA+ST104Q05NA
+        #Adaption of instruction (ADINST)
+        ADINST    =~ ST107Q01NA+ST107Q02NA+ST107Q03NA
+        #Instrumental motivation (INSTSCIE)
+        INSTSCIE  =~ ST113Q01TA+ST113Q02TA+ST113Q03TA+ST113Q04TA
+        #Disciplinary climate in science classes (DISCLISCI)        
+        DISCLISCI =~ ST097Q01TA+ST097Q02TA+ST097Q03TA+ST097Q04TA+ST097Q05TA
 
 
 
-science ~ ST004D01T + SCHLTYPE + ESCS
+        science ~ ST004D01T + SCHLTYPE + ESCS
 
 '
 
@@ -215,18 +215,18 @@ sink()
 
 
 model.pisa2 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Science-related dispositions / Other science related
-#Science self-efficacy (SCIEEFF)  
-selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
-#Epistemological beliefs (EPIST)
-epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
-#Science activities (SCIEACT)
-scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
-
-
-science ~ selfEfficay + epistBelief + scieActivities + ST004D01T + SCHLTYPE + ESCS 
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Science-related dispositions / Other science related
+            #Science self-efficacy (SCIEEFF)  
+            selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
+            #Epistemological beliefs (EPIST)
+            epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
+            #Science activities (SCIEACT)
+            scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
+            
+            
+            science ~ selfEfficay + epistBelief + scieActivities + ST004D01T + SCHLTYPE + ESCS 
 
 '
 des.rep2 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
@@ -253,15 +253,15 @@ sink()
 # ----------------------------------------- ANALYSIS NO 3 ----------------------------------------- #
 
 model.pisa3 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Students’ dispositions for collaborative problem solving
-#Enjoy co-operation (COOPERATE)
-COOPERATE =~ ST082Q02NA+ST082Q03NA+ST082Q08NA+ST082Q12NA
-#Value co-operation (CPSVALUE)
-CPSVALUE =~ ST082Q01NA+ST082Q09NA+ST082Q13NA+ST082Q14NA
-
-science ~ COOPERATE + CPSVALUE + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Students’ dispositions for collaborative problem solving
+            #Enjoy co-operation (COOPERATE)
+            COOPERATE =~ ST082Q02NA+ST082Q03NA+ST082Q08NA+ST082Q12NA
+            #Value co-operation (CPSVALUE)
+            CPSVALUE =~ ST082Q01NA+ST082Q09NA+ST082Q13NA+ST082Q14NA
+            
+            science ~ COOPERATE + CPSVALUE + ST004D01T + SCHLTYPE + ESCS
 
 '
 
@@ -291,13 +291,13 @@ sink()
 
 
 model.pisa4 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Sense of Belonging in School
-#Sense of Belonging to School (BELONG)
-BELONG =~ ST034Q01TA+ST034Q02TA+ST034Q03TA+ST034Q04TA+ST034Q05TA+ST034Q06TA
-
-science ~ BELONG + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Sense of Belonging in School
+            #Sense of Belonging to School (BELONG)
+            BELONG =~ ST034Q01TA+ST034Q02TA+ST034Q03TA+ST034Q04TA+ST034Q05TA+ST034Q06TA
+            
+            science ~ BELONG + ST004D01T + SCHLTYPE + ESCS
 
 '
 
@@ -326,15 +326,15 @@ sink()
 
 
 model.pisa5 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Interest in science
-#Enjoyment of science (JOYSCIE)
-JOYSCIE =~ ST094Q01NA+ST094Q02NA+ST094Q03NA+ST094Q04NA+ST094Q05NA
-#Interest in broad science topics (INTBRSCI)
-INTBRSCI =~ ST095Q04NA+ST095Q07NA+ST095Q08NA+ST095Q13NA+ST095Q15NA
-
-science ~ JOYSCIE + INTBRSCI + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Interest in science
+            #Enjoyment of science (JOYSCIE)
+            JOYSCIE =~ ST094Q01NA+ST094Q02NA+ST094Q03NA+ST094Q04NA+ST094Q05NA
+            #Interest in broad science topics (INTBRSCI)
+            INTBRSCI =~ ST095Q04NA+ST095Q07NA+ST095Q08NA+ST095Q13NA+ST095Q15NA
+            
+            science ~ JOYSCIE + INTBRSCI + ST004D01T + SCHLTYPE + ESCS
 '
 
 des.rep5 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
@@ -359,15 +359,15 @@ sink()
 # ----------------------------------------- ANALYSIS NO 6 ----------------------------------------- #
 
 model.pisa6 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Students ́ motivation
-#Test Anxiety (ANXTEST)
-ANXTEST =~ ST118Q01NA+ST118Q02NA+ST118Q03NA+ST118Q04NA+ST118Q05NA
-#Achievement motivation (MOTIVAT)
-MOTIVAT =~ ST119Q01NA+ST119Q02NA+ST119Q03NA+ST119Q04NA+ST119Q05NA
-
-science ~ ANXTEST + MOTIVAT + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Students ́ motivation
+            #Test Anxiety (ANXTEST)
+            ANXTEST =~ ST118Q01NA+ST118Q02NA+ST118Q03NA+ST118Q04NA+ST118Q05NA
+            #Achievement motivation (MOTIVAT)
+            MOTIVAT =~ ST119Q01NA+ST119Q02NA+ST119Q03NA+ST119Q04NA+ST119Q05NA
+            
+            science ~ ANXTEST + MOTIVAT + ST004D01T + SCHLTYPE + ESCS
 
 '
 
@@ -396,13 +396,13 @@ sink()
 
 
 model.pisa7 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Parental Supports
-#Parents emotional support (EMOSUPS)
-EMOSUPS =~ ST123Q01NA+ST123Q02NA+ST123Q03NA+ST123Q04NA            
-
-science ~  EMOSUPS + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Parental Supports
+            #Parents emotional support (EMOSUPS)
+            EMOSUPS =~ ST123Q01NA+ST123Q02NA+ST123Q03NA+ST123Q04NA            
+            
+            science ~  EMOSUPS + ST004D01T + SCHLTYPE + ESCS
 
 '
 
@@ -431,15 +431,15 @@ sink()
 
 
 model.pisa8 <- '
-science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
-
-#Environmental awareness and optimism
-#Environmental Awareness (ENVAWARE)
-ENVAWARE =~ ST092Q01TA+ST092Q02TA+ST092Q04TA+ST092Q05TA+ST092Q06NA+ST092Q08NA+ST092Q09NA
-#Item parameters for Environmental optimism (ENVOPT)
-ENVOPT =~ ST093Q01TA+ST093Q03TA+ST093Q04TA+ST093Q05TA+ST093Q06TA+ST093Q07NA+ST093Q08NA
-
-science ~  ENVAWARE + ENVOPT + ST004D01T + SCHLTYPE + ESCS
+            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            
+            #Environmental awareness and optimism
+            #Environmental Awareness (ENVAWARE)
+            ENVAWARE =~ ST092Q01TA+ST092Q02TA+ST092Q04TA+ST092Q05TA+ST092Q06NA+ST092Q08NA+ST092Q09NA
+            #Item parameters for Environmental optimism (ENVOPT)
+            ENVOPT =~ ST093Q01TA+ST093Q03TA+ST093Q04TA+ST093Q05TA+ST093Q06TA+ST093Q07NA+ST093Q08NA
+            
+            science ~  ENVAWARE + ENVOPT + ST004D01T + SCHLTYPE + ESCS
 
 '
 

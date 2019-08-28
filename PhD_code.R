@@ -4,6 +4,7 @@ install.packages("lavaan")
 install.packages("lavaan.survey", dependencies=TRUE)
 install.packages("agrmt")
 install.packages("semPlot")
+install.packages("semTools")
 
 
 library("foreign") #penting 1
@@ -104,7 +105,7 @@ pisaMas2015 <- pisa.select.merge(student.file = "CY6_MS_CM2_STU_QQQ.sav",
                                    "CULTPOSS","HEDRES","WEALTH","ICTRES","HOMEPOS",
                                    
                                    
-                                   "EMOSUPS","SCIEEFF", "EPIST","SCIEACT","STRATUM","ESCS"),
+                                   "STRATUM","ESCS"),
                                  # variables are numerical
                                  school = c("SCHSIZE","CLSIZE","SCHLTYPE",
                                             
@@ -159,6 +160,7 @@ write.csv(pisaMas2015,'pisaMalaysia.csv',row.names = FALSE)
 pisaMalaysia <- read.csv("pisaMalaysia.csv")
 
 
+
 # ---------------------------------- #
 # Exploring the data
 # ---------------------------------- #
@@ -175,14 +177,16 @@ dim(pisaMas2015)  #shows me the number of rows and columns in the data set
 summary(pisaMas2015)
 
 #how many clusters?
-length(table(pisaMalaysia$CNTSCHID))
+length(table(impPISALong$CNTSCHID))
 pisaMalaysia[pisaMalaysia==""]  <- NA # This data has blanks.  Let's convert the blanks to "NA"
 
 #what are the different cluster sizes?
-table(table(pisaMalaysia$CNTSCHID))
+table(table(impPISALong$CNTSCHID))
 
 # if you want to see how may unique values there are for each column:
 sapply(pisaMalaysia, function(x) length(unique(x)))
+
+
 
 
 
@@ -202,6 +206,17 @@ str(imputedPisa, list.len=ncol(imputedPisa))
 
 #This line of code will check for every columns if there's any missing values (NAs)
 sapply(impPISALong, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
+
+
+
+# few groups that can be focused
+# SEX (1 = female, 2 = male)
+# CNTSCHID - 225 schools
+# STRATUM - Various Types (1-9)
+# SCHLTYPE - Types of School (1-Private Independent, 2-Private Govt-Dependent, 3-Public )
+impPISALong$ST004D01T <- factor(impPISALong$ST004D01T,labels = c("Female","Male"))
+female <- subset(impPISALong, c(ST004D01T=="Female"))
+NationalSecondary <- subset(impPISALong,STRATUM == "MYS0101")
 
 # ----------------------------------------- ANALYSIS NO 1 ----------------------------------------- #
 # one level model with all variables from Science learning in school
@@ -239,12 +254,13 @@ des.rep1 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTUR
 fit1 <- lavaan(model.pisa1, data=impPISALong, auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
                int.ov.free=TRUE,estimator="MLM")
 fit.surv1 <-lavaan.survey(lavaan.fit=fit1, survey.design=des.rep1)
-# 1 mins
+fitmeasures(fit.surv1,c("cfi","rmsea","srmr"))
+
 
 #analysis 1
 sink("analysis1.txt")
 summary(fit.surv1, fit.measures = TRUE, standardized = TRUE)
-fitmeasures(fit.surv1,"chisq")
+
 sink()
 
 # ----------------------------------------- ANALYSIS NO 2 ----------------------------------------- #
@@ -254,18 +270,18 @@ sink()
 
 
 model.pisa2 <- '
-            science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+            #science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
             
             #Science-related dispositions / Other science related
             #Science self-efficacy (SCIEEFF)  
-            selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
+            SCIEEFF =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
             #Epistemological beliefs (EPIST)
-            epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
+            #EPIST   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
             #Science activities (SCIEACT)
-            scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
+            #SCIEACT =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
             
             
-            science ~ selfEfficay + epistBelief + scieActivities + ST004D01T + SCHLTYPE + ESCS 
+            #science ~ SCIEEFF + EPIST + SCIEACT  + SCHLTYPE + ESCS 
 
 '
 des.rep2 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
@@ -274,15 +290,15 @@ fit2 <- lavaan(model.pisa2, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstr
                int.ov.free=TRUE,estimator="MLM")
 fit.surv2 <-lavaan.survey(lavaan.fit=fit2, survey.design=des.rep2)
 
-vartable(fit2)
+fitmeasures(fit.surv2,c("cfi","rmsea","srmr"))
 
 #analysis 2
 sink("analysis2.txt")
 summary(fit.surv2, fit.measures = TRUE, standardized = TRUE)
-fitmeasures(fit.surv2,"chisq")
+ fitmeasures(fit.surv2,"chisq")
 sink()
 
-
+measurementInvariance(model = fit2,data = impPISALong,group="STRATUM",strict = TRUE)
 
 # ----------------------------------------- ANALYSIS NO 3 ----------------------------------------- #
 # one level model - SCIELEARNSCHOOL
@@ -459,6 +475,7 @@ summary(fit.surv7, fit.measures = TRUE, standardized = TRUE)
 fitmeasures(fit.surv7,"chisq")
 sink()
 
+measurementInvariance(model = fit7,data = impPISALong,group="STRATUM",strict = TRUE)
 
 # ----------------------------------------- ANALYSIS NO 8 ----------------------------------------- #
 # one level model
@@ -485,7 +502,7 @@ model.pisa8 <- '
 des.rep8 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
                          type="Fay", rho=0.5,combined.weights = TRUE)
 
-fit8 <- lavaan(model.pisa7, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+fit8 <- lavaan(model.pisa8, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
                int.ov.free=TRUE,estimator="MLM")
 fit.surv8 <-lavaan.survey(lavaan.fit=fit8, survey.design=des.rep8)
 
@@ -498,3 +515,62 @@ fitmeasures(fit.surv8,"chisq")
 sink()
 
 
+# ----------------------------------------- ANALYSIS NO 9 ----------------------------------------- #
+# two level model
+# Students’ dispositions for collaborative problem solving
+# use the raw questionnaire data as in tutorials from intsvy package
+# USING impPISALong data
+# measurement model -> (=~ is measured by) | (~ is regressed on) | (~~ is correlated with)
+# ----------------------------------------- ANALYSIS NO 7 ----------------------------------------- #
+
+
+model.pisa9 <- '
+    level: within     
+          science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+
+          #Science-related dispositions / Other science related
+          #Science self-efficacy (SCIEEFF)  
+          selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
+          #Epistemological beliefs (EPIST)
+          epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
+          #Science activities (SCIEACT)
+          scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
+          
+          
+          
+
+
+
+level: between      
+          
+          
+          #School Leadership
+          SchLeadShip =~ LEADINST
+          
+          
+
+'
+
+des.rep9 <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                         type="Fay", rho=0.5,combined.weights = TRUE)
+
+fit9 <- lavaan(model.pisa9, data=impPISALong,auto.var=TRUE, std.lv=TRUE, meanstructure=TRUE, 
+               int.ov.free=TRUE,estimator="MLM",cluster = "CNTSCHID")
+fit9 <- sem(model.pisa9, data=impPISALong, std.lv=TRUE, meanstructure=TRUE, 
+            int.ov.free=TRUE,estimator="MLM",cluster = "CNTSCHID")
+
+fit.surv9 <-lavaan.survey(lavaan.fit=fit9, survey.design=des.rep9)
+
+
+
+#analysis 9
+sink("analysis9.txt")
+summary(fit.surv9, fit.measures = TRUE, standardized = TRUE)
+fitmeasures(fit.surv9,c("cfi","rmsea","srmr"))
+sink()
+
+inspect(fit9, what="list")
+
+
+
+measurementInvariance(model = fit9,data = impPISALong,group="STRATUM",strict = TRUE)

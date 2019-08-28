@@ -984,9 +984,30 @@ str(pisaMalaysia, list.len=ncol(pisaMalaysia))
 
 
 
+    level: within #students     
+          science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+          
+          #Science-related dispositions / Other science related
+          #Science self-efficacy (SCIEEFF)  
+          selfEfficay =~ ST129Q01TA+ST129Q02TA+ST129Q03TA+ST129Q04TA+ST129Q05TA+ST129Q06TA+ST129Q07TA+ST129Q08TA
+          #Epistemological beliefs (EPIST)
+          epistBelief   =~ ST131Q01NA+ST131Q03NA+ST131Q04NA+ST131Q06NA+ST131Q08NA+ST131Q11NA
+          #Science activities (SCIEACT)
+          scieActivities =~ ST146Q01TA+ST146Q02TA+ST146Q03TA+ST146Q04TA+ST146Q05TA+ST146Q06NA+ST146Q07NA+ST146Q08NA+ST146Q09NA
 
 
+          science ~ selfEfficay + epistBelief + scieActivities + ST004D01T + SCHLTYPE + ESCS 
 
+          
+          
+    level: between #school    
+
+
+NON-ZERO VARIANCE
+A variance value of zero indicates that all values within a set of numbers are identical; 
+all variances that are non-zero will be positive numbers. 
+A large variance indicates that numbers in the set are far from the mean and each other, 
+while a small variance indicates the opposite
 
 
 

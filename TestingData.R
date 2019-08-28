@@ -57,7 +57,7 @@ multisteps <- measurementInvariance(model = efficacy,data = impPISALong,group="S
 
 # adding more restrictive in the model (Metric|group.equal = "loadings",Scalar|"intercepts",Strict|"residuals")
 fitAllStrict <- lavaan(efficacy, data=impPISALong,meanstructure=TRUE,auto.var=TRUE, std.lv=TRUE,int.ov.free=TRUE,group = "STRATUM",
-                       group.equal=c("loadings","intercepts"))
+                       group.equal=c("loadings","intercepts","residuals"))
 fitAllSurvStrict <-lavaan.survey(lavaan.fit=fitAllStrict, survey.design=modelDesign)
 fitmeasures(fitAllSurvStrict,c("cfi","tli","rmsea","srmr"))
 summary(fitAllSurv, fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)

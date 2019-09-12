@@ -16,7 +16,7 @@ SBP <- subset(impPISALong,STRATUM == "MYS0204")
 
 
 efficacy <- '
-
+          science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
           SCIEEFF =~ ST129Q01TA + ST129Q02TA + ST129Q03TA + ST129Q04TA + ST129Q05TA + ST129Q06TA + ST129Q07TA + ST129Q08TA
 
 '
@@ -60,5 +60,56 @@ fitAllStrict <- lavaan(efficacy, data=impPISALong,meanstructure=TRUE,auto.var=TR
                        group.equal=c("loadings","intercepts","residuals"))
 fitAllSurvStrict <-lavaan.survey(lavaan.fit=fitAllStrict, survey.design=modelDesign)
 fitmeasures(fitAllSurvStrict,c("cfi","tli","rmsea","srmr"))
-summary(fitAllSurv, fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)
+summary(fitAllSurvStrict, fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)
+
+
+efficacy1 <- '
+          science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+          #SCIEEFF =~ ST129Q01TA + ST129Q02TA + ST129Q03TA + ST129Q04TA + ST129Q05TA + ST129Q06TA + ST129Q07TA + ST129Q08TA
+          science <~ SCIEEFF + EPIST + SCIEACT
+
+
+
+'
+modelDesign <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                            type="Fay", rho=0.5,combined.weights = TRUE)
+fitAll1 <- lavaan(efficacy1, data=impPISALong,meanstructure=TRUE,auto.var=TRUE, std.lv=TRUE,int.ov.free=TRUE)
+fitAllSurv1 <-lavaan.survey(lavaan.fit=fitAll1, survey.design=modelDesign)
+fitmeasures(fitAllSurv1,c("cfi","tli","rmsea","srmr"))
+summary(fitAllSurv1, fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)
+
+
+model.pisa9 <- '
+    level: within     
+          science =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+          science ~ SCIEEFF + EPIST + SCIEACT
+
+
+    level: between      
+          scienceS =~ PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE + PV6SCIE + PV7SCIE + PV8SCIE + PV9SCIE + PV10SCIE
+          scienceS ~  STUBEHA + TEACHBEHA
+
+'
+
+modelDesign <- svrepdesign( weights=~W_FSTUWT, data=impPISALong,repweights="W_FSTURWT[0-9]+", 
+                            type="Fay", rho=0.5,combined.weights = TRUE)
+fitAll9 <- sem(model.pisa9, data=impPISALong,cluster = "CNTSCHID")
+fitAllSurv9 <-lavaan.survey(lavaan.fit=fitAll9, survey.design=modelDesign)
+fitmeasures(fitAllSurv9,c("cfi","tli","rmsea","srmr"))
+summary(fitAllSurv9, fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)
+
+
+# ----------------------------------------- Testing DEMO TWO.LEVEL ----------------------------------------- #
+model <- '
+    level: 1
+          fw =~ y1 + y2 + y3
+          fw ~ x1 + x2 + x3
+    level: 2
+          fb =~ y1 + y2 + y3
+          fb ~ w1 + w2
+'
+fit <- sem(model, data = Demo.twolevel, cluster = "cluster",meanstructure=TRUE,auto.var=TRUE, std.lv=TRUE,int.ov.free=TRUE)
+summary(fit,fit.measures = TRUE, standardized = TRUE,rsquare=TRUE)
+
+
 

@@ -32,8 +32,8 @@ pisaMas2015 <- pisa.select.merge(student.file = "CY6_MS_CM2_STU_QQQ.sav",
                                  school.file = "CY6_MS_CM2_SCH_QQQ.sav",
                                  #parent.file = "CY6_MS_CM2_TCH_QQQ.sav",
                                  # variables are numerical
-                                 student = c(#Sex
-                                   "ST004D01T",
+                                 student = c(#Sex "ST004D01T",
+                                   
                                    
                                    #Science learning in school
                                    #Inquiry-based science teaching and learning practices (IBTEACH)
@@ -107,7 +107,7 @@ pisaMas2015 <- pisa.select.merge(student.file = "CY6_MS_CM2_STU_QQQ.sav",
                                    
                                    "STRATUM","ESCS"),
                                  # variables are numerical
-                                 school = c("SCHSIZE","CLSIZE","SCHLTYPE",
+                                 school = c(#"SCHSIZE","CLSIZE","SCHLTYPE",
                                             
                                             #School Leadership
                                             #Educational leadership (LEAD)
@@ -207,7 +207,9 @@ str(imputedPisa, list.len=ncol(imputedPisa))
 #This line of code will check for every columns if there's any missing values (NAs)
 sapply(impPISALong, function(x) sum(is.na(x))) # <---- dari sini boleh cek brapa byk column yg NAs
 
-
+#dropped
+impPISALong$.id <- NULL
+impPISALong$.imp<-NULL
 
 # few groups that can be focused
 # SEX (1 = female, 2 = male)

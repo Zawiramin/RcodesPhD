@@ -89,6 +89,7 @@ LATENTVAR <- subset(pisa2015,
 #' randomization. Next, we remove the missing cases, save it as a new dataset, and then use 
 #' createDataPartition() from the caret package to create an index to split the dataset as 70% to 30% using p = 0.7.
 #' https://okanbulut.github.io/bigdata/supervised-machine-learning-part-i.html#decision-trees-in-r
+#' MICE for IMPUTATION
 #' #--------------------------------------------------------------------------------------------#
 
 #' Set the seed before splitting the data
@@ -107,47 +108,15 @@ summary(LATENTVAR)
 #'----------------------------#
 LATENTVAR[,':='
          (science = rowMeans(LATENTVAR[, c(paste0("PV", 1:10, "SCIE"))], na.rm = TRUE))]
-LATENTVAR[,summary(science)]
-
-
-#-------------------------------------------------------------------#
-#' TARGET CLASS
-#' Using a set of predictors in the pisa dataset, we will predict whether students are above 
-#' or below the mean scale score for science. The average science score in PISA 2015 was 493 
-#' across all participating countries (see PISA 2015 Results in Focus for more details). 
-#' Using this score as a cut-off value, we will first create a binary variable called 
-#' science_perf where science_perf= High if a student’s science score is equal or larger than
-#'  493; otherwise science_perf= Low
-#'  USING Malaysia' OECD AVERAGE AS CUT OFF
-
-#'  USING MALAYSIA AVERAGE AS CUT OFF
-pisa2015[, science_perf := 
-           as.factor(ifelse(science >= (mean(science)), "High", "Low"))]
-
-pisa2015[,table(science_perf)]
-#fwrite(pisa15Mas,file = "pisa15Mas.csv")
-
-#' Performed Imputation using MICE
-latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
-latVar.imp <- complete(latVar.imp)
-
-#-------------------------
-#' Perform the PARTITIONIONG
-indexTSI.73 <- createDataPartition(TSIndcesNew$science_perfM, p = 0.7, list = FALSE)
-train.TSI.73 <- TSIndcesNew[indexTSI.73,]
-test.TSI.73 <- TSIndcesNew[-indexTSI.73,]
-
-indexTSI.82 <- createDataPartition(TSIndcesNew$science_perfM, p = 0.8, list = FALSE)
-train.TSI.82 <- TSIndcesNew[indexTSI.82,]
-test.TSI.82 <- TSIndcesNew[-indexTSI.82,]
-
-
-
-
+LATENTVAR[,mean(science)]
 
 
 #--------------------------------------------------------------#
 #' DATA SUMMARY - PLAYING WITH DATA - Exploratory Data Analysis
+#' prior to Training and Testing - Univariate Descriptive analysis
+#' eg:  central tendency (mean, mode and median) and 
+#' dispersion: range, variance, maximum, minimum, 
+#' quartiles (including the interquartile range), and standard deviation.
 #' #-----------------------------------------------------------#
 #' What if we want to compare just the students' science performance 
 #' mean on the enjoyment of science 
@@ -161,5 +130,52 @@ LATENTVAR[,.(science = mean(science, na.rm = TRUE),
 LATENTVAR[,.(science = mean(science, na.rm = TRUE),
              enjoy = mean(JOYSCIE, na.rm = TRUE)),
           by = .(ST004D01T,SCH.TYPE)]
+
+
+
+
+
+#' Performed Imputation using MICE
+summary(LATENTVAR)
+#latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
+#latVar.imp <- complete(latVar.imp) #commenting this as to note that i don't need to run this code agein
+summary(latVar.imp)
+
+#' convert data.frame to data.table 
+#' read here for more details on the disadvantages of data.frame (R base)
+#' https://www.quora.com/What-is-the-difference-between-data-frame-and-data-table-in-R-programming-language
+#latVar.imp <- data.table(latVar.imp)
+
+
+#' Since calculating the mean PV doesn't affected by the imputation, due to the PVs have no NAs,
+#' I chose to performed it after imputation was done. 
+#' And partitioning the data also was done after imputation.
+#' That's the correct way of managing the data
+
+#--------------#
+#' TARGET CLASS
+#' Using a set of predictors in the pisa dataset, we will predict whether students are above 
+#' or below the mean scale score for science. The average science score in PISA 2015 was 493 
+#' across all participating countries (see PISA 2015 Results in Focus for more details). 
+#' Using this score as a cut-off value, we will first create a binary variable called 
+#' science_perf where science_perf= High if a student’s science score is equal or larger than
+#'  493; otherwise science_perf= Low
+#'  USING Malaysia' OECD AVERAGE AS CUT OFF
+
+#'  USING MALAYSIA AVERAGE AS CUT OFF
+latVar.imp[, science_perf := 
+            as.factor(ifelse(science >= mean(science), "High", "Low"))]
+
+latVar.imp[,table(science_perf)]
+#-------------------------
+#' Perform the PARTITIONIONG
+indexlatVar.73 <- createDataPartition(latVar.imp$science_perf, p = 0.7, list = FALSE)
+train.latVarImp.73 <- latVar.imp[indexlatVar.73,]
+test.latVarImp.73 <- latVar.imp[-indexlatVar.73,]
+
+indexlatVar.82 <- createDataPartition(latVar.imp$science_perf, p = 0.8, list = FALSE)
+train.latVarImp.82 <- latVar.imp[indexlatVar.82,]
+test.latVarImp.82 <- latVar.imp[-indexlatVar.82,]
+
 
 

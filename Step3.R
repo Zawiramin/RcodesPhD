@@ -1,3 +1,7 @@
+#' WHAT ARE THE STEP 3
+#' Supposedly, this step is used for RECODING the variables
+#' HOWEVER since I'm not gonna touch any of the item parameters YET/maybe never,
+#' I might leave this code alone and skip it
 
 #' RECODE
 #' --------------------------------------------

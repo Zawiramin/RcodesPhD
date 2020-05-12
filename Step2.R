@@ -1,3 +1,10 @@
+#' WHAT ARE THE STEP 2
+#' Basically step 2 SUPPOSEDLY are focusing on the data management section
+#' 1st we extract only Malaysia from the original database
+#' 2nd i rename the school stratum into much simpler one
+#' 3rd i subset only the variables needed for the statistic and analysis
+#' 4th i performed IMPUTATION using MICE
+#' 5th i split or partitioned the data into desired % (70-30 or 80-20)
 #' #--------------------------------------------------------------------------------------------------#
 #'                          LINK AND NOTE USING DATA.TABLE
 #' https://okanbulut.github.io/bigdata/wrangling-big-data.html#readingwriting-data-with-data.table
@@ -102,6 +109,7 @@ LATENTVAR[,':='
          (science = rowMeans(LATENTVAR[, c(paste0("PV", 1:10, "SCIE"))], na.rm = TRUE))]
 LATENTVAR[,summary(science)]
 
+
 #-------------------------------------------------------------------#
 #' TARGET CLASS
 #' Using a set of predictors in the pisa dataset, we will predict whether students are above 
@@ -122,6 +130,20 @@ pisa2015[,table(science_perf)]
 #' Performed Imputation using MICE
 latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
 latVar.imp <- complete(latVar.imp)
+
+#-------------------------
+#' Perform the PARTITIONIONG
+indexTSI.73 <- createDataPartition(TSIndcesNew$science_perfM, p = 0.7, list = FALSE)
+train.TSI.73 <- TSIndcesNew[indexTSI.73,]
+test.TSI.73 <- TSIndcesNew[-indexTSI.73,]
+
+indexTSI.82 <- createDataPartition(TSIndcesNew$science_perfM, p = 0.8, list = FALSE)
+train.TSI.82 <- TSIndcesNew[indexTSI.82,]
+test.TSI.82 <- TSIndcesNew[-indexTSI.82,]
+
+
+
+
 
 
 #--------------------------------------------------------------#

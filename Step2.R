@@ -141,4 +141,4 @@ LATENTVAR[,.(science = mean(science, na.rm = TRUE),
              enjoy = mean(JOYSCIE, na.rm = TRUE)),
           by = .(ST004D01T,SCH.TYPE)]
 
-#test
+

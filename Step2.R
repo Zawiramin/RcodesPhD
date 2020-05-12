@@ -1,7 +1,6 @@
 #' #--------------------------------------------------------------------------------------------------#
-#'                               USING DATA.TABLE
+#'                          LINK AND NOTE USING DATA.TABLE
 #' https://okanbulut.github.io/bigdata/wrangling-big-data.html#readingwriting-data-with-data.table
-#'
 #' #--------------------------------------------------------------------------------------------------#
 #' #-------------------------------------------------#
 pisa2015 <- pisa2015[CNTRYID == "Malaysia"]

@@ -1,80 +1,163 @@
+#' This is where all the analysis starts for Decision Trees
 #' #-------------------------------------------------------------------------------------# 
 #' THE PLAN:
-#' Building [Model 3] All TSI summaries combined
-#' tsiM1a - gini (train70-30 & xval 10)
-#' tsiM1b - gini (train80-20 & xval 10)
-#' tsiM2a - information (train70-30 & xval 10)
-#' tsiM2b - information (train80-20 & xval 10)
+#' Building [Model 1] All latent var
+#' latVar73a - gini (train70-30 & xval 10)
+#' latVar73b - information (train70-30 & xval 10)
+#' latVar82a - gini (train80-20 & xval 10)
+#' latVar82b - information (train80-20 & xval 10)
 
 ##' #-------------------------------------------------------------------------------------# 
-#' 1 [tsiM1a] All TSI summaries combined - gini (train70-30 & xval 10)
-#' 
+##' #-------------------------------------------------------------------------------------# 
+#'  [Model1a] #' latVar73a - gini (train70-30 & xval 10)
+##' #-------------------------------------------------------------------------------------#  
+##' #-------------------------------------------------------------------------------------# 
 set.seed(1234)
-tsiM1a <- rpart(formula = science_perfM ~.,
-                  data = train.TSI.73,
-                  method = "class", 
-                  parms = list(split = "gini"),
-                  control = rpart.control(cp = 0))
+#' train the model with no validation first to see how it goes
+latVar73a <- rpart(formula = science_perf ~.,
+                   data = train.latVarImp.73,
+                   method = "class", 
+                   parms = list(split = "gini"),
+                   control = rpart.control(cp = 0))
 #plot(tsiM1a)
-printcp(tsiM1a)
-
-#' misclassification error rate at .3111 = .69 accuracy of training sample 
-library("tree")
-summary(tree(science_perfM ~., data = train.TSI.73))
-
-tsi.tree73 <-tree(science_perfM ~.,data = train.TSI.73)
-summary(tsi.tree73)
-plot(tsi.tree73)
-text(tsi.tree73,pretty = 0)
+printcp(latVar73a)
 
 #' using test sample to predict without pruning (validate using xval)
-tsiM1a.pred <- predict(tsiM1a, test.TSI.73) %>%
+#latentVarwith7030usingGini.predict.notprune
+lv73a.pred.np <- predict(latVar73a, test.latVarImp.73) %>%
   as.data.frame()
-head(tsiM1a.pred)
-tsiM1a.pred <- mutate(tsiM1a.pred,
-                     science_perfM = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
-  select(science_perfM)
+head(lv73a.pred.np)
+lv73a.pred.np <- mutate(lv73a.pred.np,
+                     science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
+  select(science_perf)
 
-#' Confusion Matrix tsi1 - Gini + datasetsAll for test data of unprune data
-cmM1a <- confusionMatrix(tsiM1a.pred$science_perfM, test.TSI.73$science_perfM,mode = "everything")
-cmM1a 
-
+#' Confusion Matrix - Gini + datasetsAll for test data of unprune data
+cmM1a.np <- confusionMatrix(lv73a.pred.np$science_perf, test.latVarImp.73$science_perf,mode = "everything")
+cmM1a.np
+#' compare with the error rate for missclass (1-missclass = Accuracy)
+#' misclassification error rate at .3111 = .69 accuracy of training sample 
+#library("tree")
+#latVar.tree73 <-tree(science_perf ~.,data = train.latVarImp.73)
+#summary(latVar.tree73)
+#plot(latVar.tree73)
+#text(latVar.tree73,pretty = 0)
 
 #' ------------------
 #' validation test set
 #' ------------------
-cp.prune <- tsiM1a$cptable[which.min(tsiM1a$cptable[,"xerror"]),"CP"]
+cp.prune <- latVar73a$cptable[which.min(latVar73a$cptable[,"xerror"]),"CP"]
 cp.prune
-plotcp(tsiM1a)
-tsiM1aNew <- rpart(formula =  science_perfM ~.,
-                     data = train.TSI.73,
+#plotcp(tsiM1a)
+latVar73aNew <- rpart(formula =  science_perf~.,
+                     data = train.latVarImp.73,
                      method = "class", 
                      parms = list(split = "gini"),
                      control = rpart.control(cp = cp.prune))
-plot(tsiM1aNew)
-rpart.rules(tsiM1aNew, cover = TRUE)
-summary(tsiM1aNew) #' this is signed of overfitted
+plot(latVar73aNew)
+text(latVar73aNew,pretty = 0)
+#rpart.rules(latVar73aNew, cover = TRUE)
+#summary(latVar73aNew) 
 
-impVar.tsi1a<-(varImp(tsiM1aNew))
-impVar.tsi1a <- mutate(impVar.tsi1a, Variable = rownames(impVar.tsi1a))
-impVar.gini73 <- impVar.tsi1a[order(impVar.tsi1a$Overall,decreasing = TRUE),]
-impVar.gini73
+#' ImportantVar.latVar7030GiniNew(pruned)
+IV.latVar73aNew<-varImp(latVar73aNew)
+IV.latVar73aNew <- mutate(IV.latVar73aNew, Variable = rownames(IV.latVar73aNew))
+IV.latVar73aNew <- IV.latVar73aNew[order(IV.latVar73aNew$Overall,decreasing = TRUE),]
+IV.latVar73aNew
 
-tsi1a.pred <- predict(tsiM1aNew, test.TSI.73) %>%
+#latentVarwith7030usingGini.predict.prune
+lv73a.pred.p <- predict(latVar73aNew, test.latVarImp.73) %>%
   as.data.frame()
-head(tsi1a.pred)
-tsi1a.pred <- mutate(tsi1a.pred,
-                      science_perfM = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
-  select(science_perfM)
+head(lv73a.pred.p)
+lv73a.pred.p <- mutate(lv73a.pred.p,
+                       science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
+  select(science_perf)
 
-#' Confusion Matrix tsi1 - Gini + datasetsAll
-cm1a <- confusionMatrix(tsi1a.pred$science_perfM, test.TSI.73$science_perfM,mode = "everything")
-cm1a 
+#' Confusion Matrix Model 1  - Gini + pruned
+cmM1a.p <- confusionMatrix(lv73a.pred.p$science_perf, test.latVarImp.73$science_perf,mode = "everything")
+cmM1a.p 
+
+#' not prune VS pruned
+cmM1a.np
+cmM1a.p 
 
 
 ##' #-------------------------------------------------------------------------------------# 
+##' #-------------------------------------------------------------------------------------# 
+#' 3 [Model1b]- #' latVar73b - information (train70-30 & xval 10)
+##' #-------------------------------------------------------------------------------------# 
+##' #-------------------------------------------------------------------------------------# 
+set.seed(1234)
+latVar73b <- rpart(formula = science_perf ~.,
+                   data = train.latVarImp.73,
+                   method = "class", 
+                   parms = list(split = "information"),
+                   control = rpart.control(cp = 0))
+
+#plot(tsiM2a)
+
+#' using test sample to predict without pruning (validate using xval)
+#latentVarwith7030usingGini.predict.notprune
+lv73b.pred.np <- predict(latVar73b, test.latVarImp.73) %>%
+  as.data.frame()
+head(lv73b.pred.np)
+lv73b.pred.np <- mutate(lv73b.pred.np,
+                        science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
+  select(science_perf)
+
+#' Confusion Matrix - Gini + datasetsAll for test data of unprune data
+cmM1b.np <- confusionMatrix(lv73b.pred.np$science_perf, test.latVarImp.73$science_perf,mode = "everything")
+cmM1b.np
+#' compare with the error rate for missclass (1-missclass = Accuracy)
+#' misclassification error rate at .3111 = .69 accuracy of training sample 
+#library("tree")
+#latVar.tree73 <-tree(science_perf ~.,data = train.latVarImp.73)
+#summary(latVar.tree73)
+#plot(latVar.tree73)
+#text(latVar.tree73,pretty = 0)
+
+#' ------------------
+#' validation test set
+#' ------------------
+cp.prune <- latVar73b$cptable[which.min(latVar73b$cptable[,"xerror"]),"CP"]
+cp.prune
+#plotcp(latVar73b)
+latVar73bNew <- rpart(formula =  science_perf ~.,
+                   data = train.latVarImp.73,
+                   method = "class", 
+                   parms = list(split = "information"),
+                   control = rpart.control(cp = cp.prune))
+
+#plot(latVar73bNew)
+#rpart.rules(tsiM2aNew, cover = TRUE)
+#summary(tsiM2aNew) #' this is signed of overfitted
+
+#' ImportantVar.latVar7030InformationNew(pruned)
+IV.latVar73bNew <- varImp(latVar73bNew)
+IV.latVar73bNew <- mutate(IV.latVar73bNew, Variable = rownames(IV.latVar73bNew))
+IV.latVar73bNew <- IV.latVar73bNew[order(IV.latVar73bNew$Overall,decreasing = TRUE),]
+IV.latVar73bNew
+
+#' latentVarwith7030usingInformation.predict.prune
+lv73b.pred.p <- predict(latVar73bNew, test.latVarImp.73) %>%
+  as.data.frame()
+head(lv73b.pred.p)
+lv73b.pred.p <- mutate(lv73b.pred.p,
+                     science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
+  select(science_perf)
+
+#' Confusion Matrix tsi2 - Entropy + datasetsAll
+cmM1b.p <- confusionMatrix(lv73b.pred.p$science_perf, test.latVarImp.73$science_perf,mode = "everything")
+cmM1b.p
+
+#' not prune VS pruned
+cmM1b.np
+cmM1b.p 
+
+##' #-------------------------------------------------------------------------------------# 
+##' #-------------------------------------------------------------------------------------# 
 #' 2 [tsiM1b] All TSI summaries combined - gini (train80-20 & xval 10)
-#' 
+##' #-------------------------------------------------------------------------------------#  
+##' #-------------------------------------------------------------------------------------# 
 set.seed(1234)
 tsiM1b <- rpart(formula = science_perfM ~.,
                 data = train.TSI.82,
@@ -131,47 +214,10 @@ cm1b
 
 
 ##' #-------------------------------------------------------------------------------------# 
-#' 3 [tsiM2a]- information (train70-30 & xval 10)
-set.seed(1234)
-tsiM2a <- rpart(formula = science_perfM ~.,
-               data = train.TSI.73,
-               method = "class", 
-               parms = list(split = "information"),
-               control = rpart.control(cp = 0))
-plot(tsiM2a)
-printcp(tsiM2a)
-
-cp.prune <- tsiM2a$cptable[which.min(tsiM2a$cptable[,"xerror"]),"CP"]
-cp.prune
-plotcp(tsiM2a)
-tsiM2aNew <- rpart(formula =  science_perfM ~.,
-                  data = train.TSI.73,
-                  method = "class", 
-                  parms = list(split = "information"),
-                  control = rpart.control(cp = cp.prune))
-plot(tsiM2aNew)
-rpart.rules(tsiM2aNew, cover = TRUE)
-summary(tsiM2aNew) #' this is signed of overfitted
-
-impVar.tsi2a <- varImp(tsiM2aNew)
-impVar.tsi2a <- mutate(impVar.tsi2a, Variable = rownames(impVar.tsi2a))
-impVar.info73 <- impVar.tsi2a[order(impVar.tsi2a$Overall,decreasing = TRUE),]
-impVar.info73
-
-tsi2a.pred <- predict(tsiM2aNew, test.TSI.73) %>%
-  as.data.frame()
-head(tsi2a.pred)
-tsi2a.pred <- mutate(tsi2a.pred,
-                   science_perfM = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% 
-  select(science_perfM)
-
-#' Confusion Matrix tsi2 - Entropy + datasetsAll
-cm2a <- confusionMatrix(tsi2a.pred$science_perfM, test.TSI.73$science_perfM,mode = "everything")
-cm2a
-
 ##' #-------------------------------------------------------------------------------------# 
 #' 4 [tsiM2b] - information (train80-20 & xval 10)
-#' 
+##' #-------------------------------------------------------------------------------------# 
+##' #-------------------------------------------------------------------------------------# 
 set.seed(1234)
 tsiM2b <- rpart(formula = science_perfM ~.,
                data = train.TSI.82,

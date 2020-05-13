@@ -137,14 +137,15 @@ LATENTVAR[,.(science = mean(science, na.rm = TRUE),
 
 #' Performed Imputation using MICE
 summary(LATENTVAR)
-#latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
-#latVar.imp <- complete(latVar.imp) #commenting this as to note that i don't need to run this code agein
-summary(latVar.imp)
+latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
+latVarNew <- complete(latVar.imp) #commenting this as to note that i don't need to run this code agein
+summary(latVarNew)
 
 #' convert data.frame to data.table 
 #' read here for more details on the disadvantages of data.frame (R base)
 #' https://www.quora.com/What-is-the-difference-between-data-frame-and-data-table-in-R-programming-language
-#latVar.imp <- data.table(latVar.imp)
+
+#latVarNew <- data.table(latVarNew)
 
 
 #' Since calculating the mean PV doesn't affected by the imputation, due to the PVs have no NAs,
@@ -163,19 +164,27 @@ summary(latVar.imp)
 #'  USING Malaysia' OECD AVERAGE AS CUT OFF
 
 #'  USING MALAYSIA AVERAGE AS CUT OFF
-latVar.imp[, science_perf := 
+latVarNew[, science_perf := 
             as.factor(ifelse(science >= mean(science), "High", "Low"))]
 
-latVar.imp[,table(science_perf)]
+latVarNew[,table(science_perf)]
+
+#' now i need to exclude non usable variables from the dataset
+#' the variables that i'm not going to use now is, (science,PV1SCIE:PV10SCIE) as it will affect the model
+#' using subset
+x<-subset(latVarNew,select = -c(PV1SCIE:science))
+x<-subset(x,select =-(SCH.TYPE)) #' sterpaksa exclude sbb effect model
+x[,table(SCH.TYPE)]
 #-------------------------
 #' Perform the PARTITIONIONG
-indexlatVar.73 <- createDataPartition(latVar.imp$science_perf, p = 0.7, list = FALSE)
-train.latVarImp.73 <- latVar.imp[indexlatVar.73,]
-test.latVarImp.73 <- latVar.imp[-indexlatVar.73,]
+set.seed(123456)
 
-indexlatVar.82 <- createDataPartition(latVar.imp$science_perf, p = 0.8, list = FALSE)
-train.latVarImp.82 <- latVar.imp[indexlatVar.82,]
-test.latVarImp.82 <- latVar.imp[-indexlatVar.82,]
+indexlatVar.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
+train.latVarImp.73 <- x[indexlatVar.73,]
+test.latVarImp.73 <- x[-indexlatVar.73,]
 
+indexlatVar.82 <- createDataPartition(x$science_perf, p = 0.8, list = FALSE)
+train.latVarImp.82 <- x[indexlatVar.82,]
+test.latVarImp.82 <- x[-indexlatVar.82,]
 
 

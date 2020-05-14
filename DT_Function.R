@@ -23,72 +23,69 @@ dtInfo <- function(dfTrain,cp){
   return(x)
 }
 #' function predict
-predDT<-function(modelDT,dfTest){
+predDT.cm<-function(modelDT,dfTest){
   x<-predict(modelDT,dfTest) %>% as.data.frame()
-  return(x)
-}
-#' function mutate
-mutateDT <- function(predDT){
-  x<-mutate(predDT,science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% select(science_perf)
-  return(x)
-}
-#' funtion CM
-cmDT <- function(mutateDT,dfTest){
-  x<-confusionMatrix(mutateDT$science_perf,dfTest$science_perf,mode = "everything")  
-  return(x)
+  y<-mutate(x,science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% select(science_perf)
+  z<-confusionMatrix(y$science_perf,dfTest$science_perf,mode = "everything")  
+  return(z)
 }
 
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+modelGini<-function(dfTrain,dfTest){
+  model.NP<- dtGini(dfTrain,0)
+  cp.prune <- model.NP$cptable[which.min(model.NP$cptable[,"xerror"]),"CP"]
+  cp.prune
+  #new prune model
+  model.P<- dtGini(dfTrain,cp.prune)
+  cm<-predDT.cm(model.P,dfTest)
+  return(cm)
+}
+modelInfo<-function(dfTrain,dfTest){
+  model.NP<- dtInfo(dfTrain,0)
+  cp.prune <- model.NP$cptable[which.min(model.NP$cptable[,"xerror"]),"CP"]
+  cp.prune
+  #new prune model
+  model.P<- dtInfo(dfTrain,cp.prune)
+  cm<-predDT.cm(model.P,dfTest)
+  return(cm)
+}
+
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 #'  [Model1a] mdl1a - gini (train70-30 & xval 10)
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 set.seed(1234)
-mdl1a.np<- dtGini(train.latVarImp.73,0)
-#pred.mdl1a.np <- predDT(mdl1a.np,test.latVarImp.73)
-#mutate.mdl1a.np <- mutateDT(pred.mdl1a.np)
-#' CM not prune
-#cmDT(mutate.mdl1a.np,test.latVarImp.73)
-
-cp.prune <- mdl1a.np$cptable[which.min(mdl1a.np$cptable[,"xerror"]),"CP"]
-cp.prune
-#new prune
-mdl1a.p<- dtGini(train.latVarImp.73,cp.prune)
-pred.mdl1a.p <- predDT(mdl1a.p,test.latVarImp.73)
-mutate.mdl1a.p <- mutateDT(pred.mdl1a.p)
-#' CM final
-cmDT(mutate.mdl1a.p,test.latVarImp.73)
-
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+model1a<-modelGini(train.latVarImp.73,test.latVarImp.73)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 #' [Model1b] mdl1b - information (train70-30 & xval 10)
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 set.seed(1234)
-mdl1b.np<- dtInfo(train.latVarImp.73,0)
-#pred.mdl1b.np <- predDT(mdl1b.np,test.latVarImp.73)
-#mutate.mdl1b.np <- mutateDT(pred.mdl1b.np)
-#' CM not prune
-#cmDT(mutate.mdl1b.np,test.latVarImp.73)
-
-cp.prune <- mdl1b.np$cptable[which.min(mdl1b.np$cptable[,"xerror"]),"CP"]
-cp.prune
-#new prune
-mdl1b.p<- dtInfo(train.latVarImp.73,cp.prune)
-pred.mdl1b.p <- predDT(mdl1b.p,test.latVarImp.73)
-mutate.mdl1b.p <- mutateDT(pred.mdl1b.p)
-#' CM final
-cmDT(mutate.mdl1b.p,test.latVarImp.73)
-
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+model1b<-modelInfo(train.latVarImp.73,test.latVarImp.73)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 ##' [Model2a] mdl2a - gini (train80-20 & xval 10)
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
-
-
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+model2a<-modelGini(train.latVarImp.82,test.latVarImp.82)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 ##' [Model2b] mdl2b - information (train80-20 & xval 10)
-##' #-------------------------------------------------------------------------------------# 
-##' #-------------------------------------------------------------------------------------# 
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+model2b<-modelInfo(train.latVarImp.82,test.latVarImp.82)
+
+model1a$overall[c("Accuracy")]
+model1a$byClass[c("Sensitivity","Specificity","Precision","F1")]
+
+model1b$overall[c("Accuracy")]
+model1b$byClass[c("Sensitivity","Specificity","Precision","F1")]
+
+model2a$overall[c("Accuracy")]
+model2a$byClass[c("Sensitivity","Specificity","Precision","F1")]
+
+model2b$overall[c("Accuracy")]
+model2b$byClass[c("Sensitivity","Specificity","Precision","F1")]

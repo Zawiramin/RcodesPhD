@@ -53,16 +53,17 @@ latVar73aNew <- rpart(formula =  science_perf~.,
                      method = "class", 
                      parms = list(split = "gini"),
                      control = rpart.control(cp = cp.prune))
-plot(latVar73aNew)
-text(latVar73aNew,pretty = 0)
+
+#plot(latVar73aNew)
+#text(latVar73aNew,pretty = 0)
 #rpart.rules(latVar73aNew, cover = TRUE)
 #summary(latVar73aNew) 
 
 #' ImportantVar.latVar7030GiniNew(pruned)
-IV.latVar73aNew<-varImp(latVar73aNew)
-IV.latVar73aNew <- mutate(IV.latVar73aNew, Variable = rownames(IV.latVar73aNew))
-IV.latVar73aNew <- IV.latVar73aNew[order(IV.latVar73aNew$Overall,decreasing = TRUE),]
-IV.latVar73aNew
+#IV.latVar73aNew<-varImp(latVar73aNew)
+#IV.latVar73aNew <- mutate(IV.latVar73aNew, Variable = rownames(IV.latVar73aNew))
+#IV.latVar73aNew <- IV.latVar73aNew[order(IV.latVar73aNew$Overall,decreasing = TRUE),]
+#IV.latVar73aNew
 
 #latentVarwith7030usingGini.predict.prune
 lv73a.pred.p <- predict(latVar73aNew, test.latVarImp.73) %>%
@@ -83,7 +84,7 @@ cmM1a.p
 
 ##' #-------------------------------------------------------------------------------------# 
 ##' #-------------------------------------------------------------------------------------# 
-#' 3 [Model1b]- #' latVar73b - information (train70-30 & xval 10)
+#' [Model1b]- #' latVar73b - information (train70-30 & xval 10)
 ##' #-------------------------------------------------------------------------------------# 
 ##' #-------------------------------------------------------------------------------------# 
 set.seed(1234)
@@ -151,7 +152,9 @@ cmM1b.p
 
 #' not prune VS pruned
 cmM1b.np
-cmM1b.p 
+#gini vs info
+cmM1a.p
+cmM1b.p
 
 ##' #-------------------------------------------------------------------------------------# 
 ##' #-------------------------------------------------------------------------------------# 

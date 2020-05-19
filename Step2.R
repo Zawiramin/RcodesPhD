@@ -134,11 +134,11 @@ LATENTVAR[,.(science = mean(science, na.rm = TRUE),
 
 
 
-
+#--------------#
 #' Performed Imputation using MICE
 summary(LATENTVAR)
-latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
-latVarNew <- complete(latVar.imp) #commenting this as to note that i don't need to run this code agein
+#latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
+#latVarNew <- complete(latVar.imp) #commenting this as to note that i don't need to run this code agein
 summary(latVarNew)
 
 #' convert data.frame to data.table 
@@ -173,11 +173,20 @@ latVarNew[,table(science_perf)]
 #' the variables that i'm not going to use now is, (science,PV1SCIE:PV10SCIE) as it will affect the model
 #' using subset
 x<-subset(latVarNew,select = -c(PV1SCIE:science))
-x<-subset(x,select =-(SCH.TYPE)) #' sterpaksa exclude sbb effect model
+x<-subset(x,select =-(SCH.TYPE)) #' terpaksa exclude sbb effect model
 x[,table(SCH.TYPE)]
 #-------------------------
 #' Perform the PARTITIONIONG
 set.seed(123456)
+
+newDT<-function(){
+  
+}
+
+#' data with all 25 latent variabls
+indexlatVar.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
+train.latVarImp.55 <- x[indexlatVar.55,]
+test.latVarImp.55 <- x[-indexlatVar.55,]
 
 indexlatVar.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
 train.latVarImp.73 <- x[indexlatVar.73,]
@@ -187,4 +196,31 @@ indexlatVar.82 <- createDataPartition(x$science_perf, p = 0.8, list = FALSE)
 train.latVarImp.82 <- x[indexlatVar.82,]
 test.latVarImp.82 <- x[-indexlatVar.82,]
 
+indexlatVar.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
+train.latVarImp.91 <- x[indexlatVar.91,]
+test.latVarImp.91 <- x[-indexlatVar.91,]
 
+#'----------------------------#
+#' 15 Latent Variables 
+#' The variables used in the analysis
+#' with Reliability > 0.8
+#'----------------------------#
+y <- subset(x,select = -c(ST004D01T,ESCS,BELONG,
+                          ANXTEST,COOPERATE,CPSVALUE,
+                          EMOSUPS,ADINST,CULTPOSS,HEDRES,ICTRES,WEALTH) )
+#' data with only 15 latent variabls
+indexNew.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
+train.New.55 <- x[indexNew.55,]
+test.New.55 <- x[-indexNew.55,]
+
+indexNew.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
+train.New.73 <- x[indexNew.73,]
+test.New.73 <- x[-indexNew.73,]
+
+indexNew.82 <- createDataPartition(x$science_perf, p = 0.8, list = FALSE)
+train.New.82 <- x[indexNew.82,]
+test.New.82 <- x[-indexNew.82,]
+
+indexNew.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
+train.New.91 <- x[indexNew.91,]
+test.New.91 <- x[-indexNew.91,]

@@ -24,12 +24,12 @@ library("foreign") #penting 1 - read spss/sav
 library("intsvy") #penting 2 - using select.merge
 library("lavaan.survey")
 library("semPlot") #plotting the SEM
-library("mice")
+#library("mice")
 library("rpart") #for calculate decision tree
-library("rpart.plot") #plotting DT
+#library("rpart.plot") #plotting DT
 library("Rcpp")
 library("modelr")
-library("ggplot2")
+#library("ggplot2")
 library("caret") #confusionMatrix
 library("randomForest")
 library("e1071")

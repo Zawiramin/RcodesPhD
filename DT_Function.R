@@ -55,28 +55,96 @@ modelInfo<-function(dfTrain,dfTest){
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 set.seed(1234)
+Rprof(tf <- "Rprof.out")
 model1a<-modelGini(train.latVarImp.73,test.latVarImp.73)
+Rprof (NULL) 
+print(summaryRprof(tf))
+
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 #' [Model1b] mdl1b - information (train70-30 & xval 10)
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 set.seed(1234)
+Rprof(tf <- "Rprof.out")
 model1b<-modelInfo(train.latVarImp.73,test.latVarImp.73)
+Rprof (NULL)
+print(summaryRprof(tf))
+
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 ##' [Model2a] mdl2a - gini (train80-20 & xval 10)
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 set.seed(1234)
+Rprof(tf <- "Rprof.out")
 model2a<-modelGini(train.latVarImp.82,test.latVarImp.82)
+Rprof (NULL) 
+print(summaryRprof(tf))
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 ##' [Model2b] mdl2b - information (train80-20 & xval 10)
 ##' #--------------------------------------------#
 ##' #--------------------------------------------#
 set.seed(1234)
+Rprof(tf <- "Rprof.out")
 model2b<-modelInfo(train.latVarImp.82,test.latVarImp.82)
+Rprof (NULL)  
+print(summaryRprof(tf))
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+
+#'----------------------------#
+#' 15 Latent Variables 
+#' The variables used in the analysis
+#' with Reliability > 0.8
+#'----------------------------#
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+#'  [Model1a] mdl1a - gini (train70-30 & xval 10)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+Rprof(tf <- "Rprof.out")
+New.model1a<-modelGini(train.New.73,test.New.73)
+Rprof (NULL) 
+print(summaryRprof(tf))
+
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+#' [Model1b] mdl1b - information (train70-30 & xval 10)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+Rprof(tf <- "Rprof.out")
+New.model1b<-modelInfo(train.New.73,test.New.73)
+Rprof (NULL)
+print(summaryRprof(tf))
+
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+##' [Model2a] mdl2a - gini (train80-20 & xval 10)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+Rprof(tf <- "Rprof.out")
+New.model2a<-modelGini(train.New.82,test.New.82)
+Rprof (NULL) 
+print(summaryRprof(tf))
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+##' [Model2b] mdl2b - information (train80-20 & xval 10)
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+set.seed(1234)
+Rprof(tf <- "Rprof.out")
+New.model2b<-modelInfo(train.New.82,test.New.82)
+Rprof (NULL)  
+print(summaryRprof(tf))
+##' #--------------------------------------------#
+##' #--------------------------------------------#
+
+
 
 model1a$overall[c("Accuracy")]
 model1a$byClass[c("Sensitivity","Specificity","Precision","F1")]

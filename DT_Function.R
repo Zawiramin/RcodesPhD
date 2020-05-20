@@ -145,6 +145,8 @@ print(summaryRprof(tf))
 ##' #--------------------------------------------#
 
 
+##' #--------------------------------------------#
+##' #--------------------------------------------#
 
 model1a$overall[c("Accuracy")]
 model1a$byClass[c("Sensitivity","Specificity","Precision","F1")]
@@ -157,3 +159,5 @@ model2a$byClass[c("Sensitivity","Specificity","Precision","F1")]
 
 model2b$overall[c("Accuracy")]
 model2b$byClass[c("Sensitivity","Specificity","Precision","F1")]
+##' #--------------------------------------------#
+##' #--------------------------------------------#

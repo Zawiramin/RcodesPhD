@@ -2,8 +2,7 @@
 [Date initiating readMe: 12 May 2020, 1:10PM]
 This Repo is a dedication of my PhD works. Hopefully I can make this repo available for others to benefit a little from it if not all.(May12,2020;117PM)
 
-(May14,2020;7:50AM)
-My approach in each models:
+(May14,2020;7:50AM) My approach in each models:
 Build cm with no xval
 1. using rpart to build DT model with no xval using train data
 2. build a confusion matrix (cm) using test data:

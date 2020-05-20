@@ -17,3 +17,8 @@ Build cm with xval
 -step1: predict
 -step2: mutate
 -step3: combine
+
+(May20,2020;2:30PM)
+Overcome long repeating code using Function
+Created Branch on Github from Master for testing.
+So later, people can benifit and edit the branch without altering the Master.

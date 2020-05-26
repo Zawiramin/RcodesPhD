@@ -6,47 +6,41 @@
 #' decision tree function using rpart
 #' takes the value df,gini/information,cp value
 #' use training set
-dtGini <- function(dfTrain,cp){
-  x<-rpart(formula =  science_perf~.,
-           data = dfTrain,
-           method = "class", 
-           parms = list(split = "gini"),
-           control = rpart.control(cp = cp))
-  return(x)
+dtGini <- function(dfTrain,cp) {
+  rpart(formula =  science_perf~.,
+        data = dfTrain,
+        method = "class", 
+        parms = list(split = "gini"),
+        control = rpart.control(cp = cp))
 }
-dtInfo <- function(dfTrain,cp){
-  x<-rpart(formula =  science_perf~.,
-           data = dfTrain,
-           method = "class", 
-           parms = list(split = "information"),
-           control = rpart.control(cp = cp))
-  return(x)
-}
+  
+dtInfo <- function(dfTrain,cp) {
+  rpart(formula =  science_perf~.,
+        data = dfTrain,
+        method = "class", 
+        parms = list(split = "information"),
+        control = rpart.control(cp = cp))
+} 
 #' function predict
 predDT.cm<-function(modelDT,dfTest){
   x<-predict(modelDT,dfTest) %>% as.data.frame()
   y<-mutate(x,science_perf = as.factor(ifelse(High >= 0.5, "High", "Low"))) %>% select(science_perf)
-  z<-confusionMatrix(y$science_perf,dfTest$science_perf,mode = "everything")  
-  return(z)
+  confusionMatrix(y$science_perf,dfTest$science_perf,mode = "everything")  
 }
 
 modelGini<-function(dfTrain,dfTest){
   model.NP<- dtGini(dfTrain,0)
   cp.prune <- model.NP$cptable[which.min(model.NP$cptable[,"xerror"]),"CP"]
-  cp.prune
   #new prune model
   model.P<- dtGini(dfTrain,cp.prune)
-  cm<-predDT.cm(model.P,dfTest)
-  return(cm)
+  predDT.cm(model.P,dfTest)
 }
 modelInfo<-function(dfTrain,dfTest){
   model.NP<- dtInfo(dfTrain,0)
   cp.prune <- model.NP$cptable[which.min(model.NP$cptable[,"xerror"]),"CP"]
-  cp.prune
   #new prune model
   model.P<- dtInfo(dfTrain,cp.prune)
-  cm<-predDT.cm(model.P,dfTest)
-  return(cm)
+  predDT.cm(model.P,dfTest)
 }
 
 ##' #--------------------------------------------#
@@ -57,6 +51,7 @@ modelInfo<-function(dfTrain,dfTest){
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 model1a<-modelGini(train.latVarImp.73,test.latVarImp.73)
+model1a
 Rprof (NULL) 
 print(summaryRprof(tf))
 
@@ -68,6 +63,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 model1b<-modelInfo(train.latVarImp.73,test.latVarImp.73)
+model1b
 Rprof (NULL)
 print(summaryRprof(tf))
 
@@ -79,6 +75,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 model2a<-modelGini(train.latVarImp.82,test.latVarImp.82)
+model2a
 Rprof (NULL) 
 print(summaryRprof(tf))
 ##' #--------------------------------------------#
@@ -89,6 +86,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 model2b<-modelInfo(train.latVarImp.82,test.latVarImp.82)
+model2b
 Rprof (NULL)  
 print(summaryRprof(tf))
 ##' #--------------------------------------------#
@@ -107,6 +105,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 New.model1a<-modelGini(train.New.73,test.New.73)
+New.model1a
 Rprof (NULL) 
 print(summaryRprof(tf))
 
@@ -118,6 +117,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 New.model1b<-modelInfo(train.New.73,test.New.73)
+New.model1b
 Rprof (NULL)
 print(summaryRprof(tf))
 
@@ -129,6 +129,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 New.model2a<-modelGini(train.New.82,test.New.82)
+New.model2a
 Rprof (NULL) 
 print(summaryRprof(tf))
 ##' #--------------------------------------------#
@@ -139,6 +140,7 @@ print(summaryRprof(tf))
 set.seed(1234)
 Rprof(tf <- "Rprof.out")
 New.model2b<-modelInfo(train.New.82,test.New.82)
+New.model2b
 Rprof (NULL)  
 print(summaryRprof(tf))
 ##' #--------------------------------------------#

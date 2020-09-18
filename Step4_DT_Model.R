@@ -60,10 +60,10 @@ latVar73aNew <- rpart(formula =  science_perf~.,
 #summary(latVar73aNew) 
 
 #' ImportantVar.latVar7030GiniNew(pruned)
-#IV.latVar73aNew<-varImp(latVar73aNew)
-#IV.latVar73aNew <- mutate(IV.latVar73aNew, Variable = rownames(IV.latVar73aNew))
-#IV.latVar73aNew <- IV.latVar73aNew[order(IV.latVar73aNew$Overall,decreasing = TRUE),]
-#IV.latVar73aNew
+IV.latVar73aNew<-varImp(latVar73aNew)
+IV.latVar73aNew <- mutate(IV.latVar73aNew, Variable = rownames(IV.latVar73aNew))
+IV.latVar73aNew <- IV.latVar73aNew[order(IV.latVar73aNew$Overall,decreasing = TRUE),]
+IV.latVar73aNew
 
 #latentVarwith7030usingGini.predict.prune
 lv73a.pred.p <- predict(latVar73aNew, test.latVarImp.73) %>%

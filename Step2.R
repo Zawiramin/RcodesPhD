@@ -10,11 +10,13 @@
 #' https://okanbulut.github.io/bigdata/wrangling-big-data.html#readingwriting-data-with-data.table
 #' #--------------------------------------------------------------------------------------------------#
 #' #-------------------------------------------------#
-pisa2015 <- pisa2015[CNTRYID == "Malaysia"]
-pisa2015[,table(CNTRYID)]
-pisaSch2015[,table(CNTRYID)]
-pisaSch2015 <-pisaSch2015[CNTRYID=="Malaysia"]
+pisa2015M <- pisa2015[CNTRYID == "Malaysia"]
+pisa2015M[,table(CNTRYID)]
+#pisaSch2015 <-pisaSch2015[CNTRYID=="Malaysia"]
+#pisaSch2015[,table(CNTRYID)]
 
+pisa15CPS[,table(CNTRYID)]
+names(pisa15CPS)
 #-------------------------------------------------#
 #' rename variables in STRATUM to a more intuitive name
 #-------------------------------------------------#
@@ -34,24 +36,24 @@ pisaSch2015 <-pisaSch2015[CNTRYID=="Malaysia"]
 #}
 #' RETIRED CODE
 
-#lookUpStratum <- data.table(STRATUM=c("MYS - stratum 01: MOE National Secondary School\\Other States",
-#                                      "MYS - stratum 02: MOE Religious School\\Other States",
-#                                      "MYS - stratum 03: MOE Technical School\\Other States",
-#                                      "MYS - stratum 04: MOE Fully Residential School",
-#                                      "MYS - stratum 05: non-MOE MARA Junior Science College\\Other States",
-#                                      "MYS - stratum 06: non-MOE Other Schools\\Other States",
-#                                      "MYS - stratum 07: Perlis non-“MOE Fully Residential Schools”",
-#                                      "MYS - stratum 08: Wilayah Persekutuan Putrajaya non-“MOE Fully Residential Schools”",
-#                                      "MYS - stratum 09: Wilayah Persekutuan Labuan non-“MOE Fully Residential Schools”"),
-#                            SCH.Strat=c("Public",
-#                                       "Religious",
-#                                       "Technical",
-#                                       "SBP",
-#                                       "MARA",
-#                                       "Private",
-#                                       "Perlis Fully Residential",
-#                                       "Putrajaya Fully Residential",
-#                                       "Labuan Fully Residential"))
+lookUpStratum <- data.table(STRATUM=c("MYS - stratum 01: MOE National Secondary School\\Other States",
+                                      "MYS - stratum 02: MOE Religious School\\Other States",
+                                      "MYS - stratum 03: MOE Technical School\\Other States",
+                                      "MYS - stratum 04: MOE Fully Residential School",
+                                      "MYS - stratum 05: non-MOE MARA Junior Science College\\Other States",
+                                      "MYS - stratum 06: non-MOE Other Schools\\Other States",
+                                      "MYS - stratum 07: Perlis non-“MOE Fully Residential Schools”",
+                                      "MYS - stratum 08: Wilayah Persekutuan Putrajaya non-“MOE Fully Residential Schools”",
+                                      "MYS - stratum 09: Wilayah Persekutuan Labuan non-“MOE Fully Residential Schools”"),
+                            SCH.TYPE=c("Public",
+                                       "Religious",
+                                       "Technical",
+                                       "SBP",
+                                       "MARA",
+                                       "Private",
+                                       "Perlis Fully Residential",
+                                       "Putrajaya Fully Residential",
+                                       "Labuan Fully Residential"))
 
 
 
@@ -59,13 +61,33 @@ pisaSch2015 <-pisaSch2015[CNTRYID=="Malaysia"]
 #' rename variable names in columns using setDT referencing to the old name with the new
 #' SCH.Strat
 #setDT(pisaSch2015)[,SCH.Strat := lookUpStratum$SCH.Strat[match(pisaSch2015$STRATUM,lookUpStratum$STRATUM)]]
-#setDT(pisa15Mas)[lookUpStratum,SCH.TYPE1 := i.SCH.TYPE, on = c(STRATUM = "STRATUM")]
+setDT(pisa2015)[lookUpStratum,SCH.TYPE := i.SCH.TYPE, on = c(STRATUM = "STRATUM")]
 pisa2015[,length(unique(CNTSCHID))]
-unique(pisa2015$SCH.TYPE)
+#unique(pisa2015$SCH.TYPE)
 
 pisa2015[,table(STRATUM)]
 pisa2015[,table(SCH.TYPE)]
-pisaSch2015[,table(SCH.Strat)]
+#pisaSch2015[,table(SCH.Strat)]
+#'----------------------------#
+#' Variables with ICT + 25 Latent Variables 
+#' The only variables used in the analysis
+#'----------------------------#
+Var.All.LatVar <- subset(pisa2015,
+                         select = c(SCH.TYPE,
+                                    ST004D01T, #sex
+                                    ESCS, #' Other derived indices from the questionnaire 
+                                    
+                                    DISCLISCI:SCIEACT,# 12 
+                                    BELONG:ADINST,    # 8
+                                    CULTPOSS:WEALTH,  # 5
+                                    PV1SCIE:PV10SCIE
+                         ))
+
+
+
+
+
+
 
 #'----------------------------#
 #' 25 Latent Variables 
@@ -174,14 +196,11 @@ latVarNew[,table(science_perf)]
 #' using subset
 x<-subset(latVarNew,select = -c(PV1SCIE:science))
 x<-subset(x,select =-(SCH.TYPE)) #' terpaksa exclude sbb effect model
-x[,table(SCH.TYPE)]
+x[,table(BELONG)]
 #-------------------------
 #' Perform the PARTITIONIONG
 set.seed(123456)
 
-newDT<-function(){
-  
-}
 
 #' data with all 25 latent variabls
 indexlatVar.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
@@ -198,16 +217,42 @@ test.latVarImp.82 <- x[-indexlatVar.82,]
 
 indexlatVar.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
 train.latVarImp.91 <- x[indexlatVar.91,]
-test.latVarImp.91 <- x[-indexlatVar.91,]
+summtest.latVarImp.91 <- x[-indexlatVar.91,]
 
 #'----------------------------#
 #' 15 Latent Variables 
 #' The variables used in the analysis
 #' with Reliability > 0.8
 #'----------------------------#
-y <- subset(x,select = -c(ST004D01T,ESCS,BELONG,
-                          ANXTEST,COOPERATE,CPSVALUE,
-                          EMOSUPS,ADINST,CULTPOSS,HEDRES,ICTRES,WEALTH) )
+#y <- subset(x,select = -c(ST004D01T,ESCS,BELONG,
+#                          ANXTEST,COOPERATE,CPSVALUE,
+#                          EMOSUPS,ADINST,CULTPOSS,HEDRES,ICTRES,WEALTH) )
+#' data with only 15 latent variabls
+#indexNew.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
+#train.New.55 <- x[indexNew.55,]
+#test.New.55 <- x[-indexNew.55,]
+
+#indexNew.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
+#train.New.73 <- x[indexNew.73,]
+#test.New.73 <- x[-indexNew.73,]
+
+#indexNew.82 <- createDataPartition(x$science_perf, p = 0.8, list = FALSE)
+#train.New.82 <- x[indexNew.82,]
+#test.New.82 <- x[-indexNew.82,]
+
+#indexNew.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
+#train.New.91 <- x[indexNew.91,]
+#test.New.91 <- x[-indexNew.91,]
+
+#'----------------------------#
+#' Science Related (Module 4 and Module 10) Latent Variables 
+#' The variables used in the analysis
+#' SCIEEFF,INTBRSCI, JOYSCIE, INSTSCIE, EPIST, ENVAWARE, ENVOPT
+#' ANXTEST,BELONG, MOTIVAT, COOPERATE, CPSVALUE
+#'----------------------------#
+ScRltd <- subset(x,select = c(ST004D01T,ESCS,
+                              SCIEEFF,INTBRSCI, JOYSCIE, INSTSCIE, EPIST, ENVAWARE, ENVOPT,
+                              ANXTEST,BELONG, MOTIVAT, COOPERATE, CPSVALUE,science_perf))
 #' data with only 15 latent variabls
 indexNew.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
 train.New.55 <- x[indexNew.55,]
@@ -224,3 +269,4 @@ test.New.82 <- x[-indexNew.82,]
 indexNew.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
 train.New.91 <- x[indexNew.91,]
 test.New.91 <- x[-indexNew.91,]
+

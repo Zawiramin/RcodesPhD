@@ -156,7 +156,7 @@ LATENTVAR[,.(science = mean(science, na.rm = TRUE),
 
 
 
-#--------------#
+#--------------------------------#
 #' Performed Imputation using MICE
 summary(LATENTVAR)
 #latVar.imp <- mice(LATENTVAR,m=5,maxit = 50,method = 'pmm', seed = 1000)
@@ -171,7 +171,7 @@ summary(latVarNew)
 
 
 #' Since calculating the mean PV doesn't affected by the imputation, due to the PVs have no NAs,
-#' I chose to performed it after imputation was done. 
+#' I chose to performed it (calculating the MEAN for PV) after imputation was done. 
 #' And partitioning the data also was done after imputation.
 #' That's the correct way of managing the data
 
@@ -202,11 +202,7 @@ x[,table(BELONG)]
 set.seed(123456)
 
 
-#' data with all 25 latent variabls
-indexlatVar.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
-train.latVarImp.55 <- x[indexlatVar.55,]
-test.latVarImp.55 <- x[-indexlatVar.55,]
-
+#' data with all 25 latent variablsS
 indexlatVar.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
 train.latVarImp.73 <- x[indexlatVar.73,]
 test.latVarImp.73 <- x[-indexlatVar.73,]
@@ -217,7 +213,7 @@ test.latVarImp.82 <- x[-indexlatVar.82,]
 
 indexlatVar.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
 train.latVarImp.91 <- x[indexlatVar.91,]
-summtest.latVarImp.91 <- x[-indexlatVar.91,]
+test.latVarImp.91 <- x[-indexlatVar.91,]
 
 #'----------------------------#
 #' 15 Latent Variables 
@@ -250,23 +246,91 @@ summtest.latVarImp.91 <- x[-indexlatVar.91,]
 #' SCIEEFF,INTBRSCI, JOYSCIE, INSTSCIE, EPIST, ENVAWARE, ENVOPT
 #' ANXTEST,BELONG, MOTIVAT, COOPERATE, CPSVALUE
 #'----------------------------#
-ScRltd <- subset(x,select = c(ST004D01T,ESCS,
+ScRltd <- subset(x,select = c(#ST004D01T,ESCS,
                               SCIEEFF,INTBRSCI, JOYSCIE, INSTSCIE, EPIST, ENVAWARE, ENVOPT,
                               ANXTEST,BELONG, MOTIVAT, COOPERATE, CPSVALUE,science_perf))
-#' data with only 15 latent variabls
-indexNew.55 <- createDataPartition(x$science_perf, p = 0.5, list = FALSE)
-train.New.55 <- x[indexNew.55,]
-test.New.55 <- x[-indexNew.55,]
+names(ScRltd)
 
-indexNew.73 <- createDataPartition(x$science_perf, p = 0.7, list = FALSE)
-train.New.73 <- x[indexNew.73,]
-test.New.73 <- x[-indexNew.73,]
+#------------------------------------------------------------#
+#' [reverse-coded] higher WLEs and higher difficulty correspond to higher 
+#' level of THE QUESTIONS on all items.
+#' [(SCIEEFF)] [Items reverse-coded]
+#' [(INTBRSCI)] 
+#' [(JOYSCIE)]
+#' [INSTSCIE] [Items reverse-coded]
+#' [EPIST]
+#' [(ENVAWARE)]
+#' [(ENVOPT)] [Items reverse-coded]
+#' [ANXTEST]
+#' [BELONG] ONLY Items [ST034Q02TA], [ST034Q03TA] and [ST034Q05TA] were [Items reverse-coded ]
+#' [MOTIVAT]
+#' [COOPERATE]
+#' [CPSVALUE]
+#------------------------------------------------------------#
 
-indexNew.82 <- createDataPartition(x$science_perf, p = 0.8, list = FALSE)
-train.New.82 <- x[indexNew.82,]
-test.New.82 <- x[-indexNew.82,]
+#'----------------------------------------#
+#' use this function to create data partition
+set.seed(1234)
+indexNew.73 <- createDataPartition(ScRltd$science_perf, p = 0.7, list = FALSE)
+train.New.73 <- ScRltd[indexNew.73,]
+test.New.73 <- ScRltd[-indexNew.73,]
+#summary(train.New.73)
+#summary(test.New.73)
 
-indexNew.91 <- createDataPartition(x$science_perf, p = 0.9, list = FALSE)
-train.New.91 <- x[indexNew.91,]
-test.New.91 <- x[-indexNew.91,]
+set.seed(1234)
+indexNew.82 <- createDataPartition(ScRltd$science_perf, p = 0.8, list = FALSE)
+train.New.82 <- ScRltd[indexNew.82,]
+test.New.82 <- ScRltd[-indexNew.82,]
 
+set.seed(1234)
+indexNew.91 <- createDataPartition(ScRltd$science_perf, p = 0.9, list = FALSE)
+train.New.91 <- ScRltd[indexNew.91,]
+test.New.91 <- ScRltd[-indexNew.91,]
+
+#'----------------------------------------#
+#' Check if the data is balanced or inbalanced datasets
+#' use SMOTE if inbalanced
+table(ScRltd$science_perf)
+prop.table(table(ScRltd$science_perf))
+
+#' 70%-Training 30%- Testing 
+table(train.New.73$science_perf)
+prop.table(table(train.New.73$science_perf))
+prop.table(table(test.New.73$science_perf))
+
+#' 80%-Training 20%- Testing
+table(train.New.82$science_perf)
+prop.table(table(train.New.82$science_perf))
+prop.table(table(test.New.82$science_perf))
+
+#' 90%-Training 10%- Testing
+
+prop.table(table(train.New.91$science_perf))
+prop.table(table(test.New.91$science_perf))
+
+#'----------------------------------------#
+#'check for factors and integers
+#'as it turns out, to be able to CHAID, predictors has to be either
+#'nominal or ordinal variables, which in R speak means we have to get them either
+#'FACTOR or ORDERED FACTOR.
+#'https://ibecav.github.io/chaidtutor1/#:~:text=CHAID%3A%3Achaid%20)%2C%20which%20in,either%20factor%20or%20ordered%20factor%20.&text=Of%20the%20variables%20that%20are,easily%20converted%20to%20true%20factors.
+#'
+head(ScRltd)
+tail(ScRltd)
+
+#check how many factors or is there any factors = 0
+ScRltd %>% 
+  select_if(is.factor) %>% 
+  ncol
+#check how many integers or is there any factors = 0
+ScRltd %>% 
+  select_if(is.numeric) %>% 
+  ncol
+
+#We’ll use a dplyr pipe to see how many have 5 or fewer levels and 10 or fewer levels.
+ScRltd %>% 
+  select_if(function(col)
+    length(unique(col)) <= 9000 & is.integer(col)) %>% 
+  head
+  
+unique(table(ScRltd$SCIEEFF))

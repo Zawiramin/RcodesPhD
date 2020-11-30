@@ -25,10 +25,18 @@ library("intsvy") #penting 2 - using select.merge
 library("lavaan.survey")
 library("semPlot") #plotting the SEM
 #library("mice")
-library("rpart") #for calculate decision tree
-#library("rpart.plot") #plotting DT
+library("rpart") #for calculate decision tree using CART
+library("rpart.plot") #plotting DT
 library("Rcpp")
 library("modelr")
+
+# https://machinelearningmastery.com/non-linear-classification-in-r-with-decision-trees/#:~:text=The%20C4.,gain%20(difference%20in%20entropy).&text=5%20(called%20J48%20in%20Weka,method%20on%20the%20iris%20dataset.
+library("rJava")
+library("RWeka") #for caluculating DT using J48 or c4.5
+
+#install.packages("CHAID", repos="http://R-Forge.R-project.org")
+library("CHAID")
+
 #library("ggplot2")
 library("caret") #confusionMatrix
 library("randomForest")
@@ -43,6 +51,8 @@ library("GGally")
 library(ggExtra)
 library(ggalluvial)
 library("plotly")
+library("rattle")
+library("partykit") #plot tree from RWeka
 
 #citation("rpart")
 #citation("ggplot2")
